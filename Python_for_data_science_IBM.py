@@ -69,5 +69,35 @@ touple1 = ("disco",10,1.2) #more data types
 touple1[0] #"disco"
 touple1[1] #"10"
 touple1[2] #"1.2"
+
+say_what=('say',' what', 'you', 'will')
+say_what[-1] #'will'
+
+#Touples Slicing 
+tuple A=(1,2,3,4,5)
+A[1:4] #(2, 3, 4)
+#picking touple numbers is always one number larger than we want 
+
+#Touple Length
+tuple B=(1,2,3,4,5)
+len(B) #5
+
+#Touples are immutable 
+ratings = (10, 9, 1, 8, 7, 8, 5, 7, 5)
+ratings1 = ratings 
+ratings[1] # = 
+ratings1[1] # = 
+#when we change something in ratings1 it doesnt change in ratings 
+ratings = (5, 7, 3, 10)
+
+#Touple Nesting
+#a touple can contain another touples 
+NT = (1, 2, ("pop", "rock"),(3,4),("disco",(1,2)))
+NT[0][1]# = 1, 2
+NT[2][1]# = "rock"
+NT[2][1]# = 3
+NT[2][1]# = "disco"
+
+
 ############################################################################################
 ############################################################################################
