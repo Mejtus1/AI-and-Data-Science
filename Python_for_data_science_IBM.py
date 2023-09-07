@@ -157,4 +157,42 @@ del(DICT["Thriller"]) #gets rid of the key Thriller
 #to see ale the keys in the dictionary we use method .keys
 DICTA.keys() #outputs DICTA
 DICTA.values() #returns values 
+
+############################################################################################
+#Sets
+#- are type of collection like touples and lists
+#- are unordered (do not record element position)
+#- have only unique elements (there is only one particular element in a set)
+#- to define a set are used Curly brackets
+#- when set is created with duplicated items, they will not be present once the set is created
+
+{"A","A"} #set will only contain value once {"A"} 
+
+#typecasting
+#lists can be converted to sets using function set()
+type(set([1,2,3])) # set will be created
+
+#.add()
+#add an element to a set 
+
+#.remove()
+#deletes and element from set 
+
+#in 
+#looks for an item in set 
+"Who" in set
+
+#unionized containtment elements in sets
+{'a','b'} & {'a'} # {'a'} (outputs only elements which are in both sets)
+
+album_set_1 = {"Bon Apetit", "Last Friday Night", "E.T."}
+album_set_3 = {"Bon Apetit", "Last Friday Night"}
+album_set_3.issubset(album_set1) = True
+
+############################################################################################
+
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
 ############################################################################################
