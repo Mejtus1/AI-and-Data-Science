@@ -225,7 +225,38 @@ print('B:', B) B: #['hard rock', 10, 1.2]
 B = A[:]
 B
 
+#Create a list a_list, with the following elements 1, hello, [1,2,3] and True
+a_list = [1, "hello", [1,2,3], True]
+print(a_list)
+#Find the value stored at index 1 of a_list
+a_list[1]
+#Retrieve the elements stored at index 1, 2 and 3 of a_list
+a_list[1:4]
+#Concatenate the following lists A = [1, 'a'] and B = [2, 1, 'd']
+A = [1, 'a'] 
+B = [2, 1, 'd']
+A + B
 
+#Shopping list 
+
+#Create an empty list
+Shopping_list=[]
+#Now store the number of items to the shopping_list
+Shopping_list=["Watch","Laptop","Shoes","Pen","Clothes"]
+#Add a new item to the shopping_list
+Shopping_list.append("Football")
+#Print First item from the shopping_list
+print(Shopping_list[0])
+#Print Last item from the shopping_list
+print(Shopping_list[-1])
+#Print the entire Shopping List
+print(Shopping_list)
+#Print the item that are important to buy from the Shopping List
+print(Shopping_list[1:3])
+#Change the item from the shopping_list
+Shopping_list[3] = "Notebook"
+#Delete the item from the shopping_list that is not required
+del (shopping_list[4])
 
 ############################################################################################
 #Dictionaries
