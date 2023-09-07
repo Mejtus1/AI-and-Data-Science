@@ -97,7 +97,40 @@ NT[0][1]# = 1, 2
 NT[2][1]# = "rock"
 NT[2][1]# = 3
 NT[2][1]# = "disco"
+#We can even access Elements and characters inside Touples 
+NT[2][1][1]# = "r"
 
 
+#LISTS
+# - lists are oslo ordered sequences
+# - lists are peresnted with square brackets
+# - list is MUTABLE
+L = ["Vicky", 10.1, 2001,[12002]]
+
+B=[1,2,[3,'a'],[4,'b']]
+B[3][1] #"b"
+
+#[1,2,3]+[1,1,1] = [1, 2, 3, 1, 1, 1]
+
+.append and .extend
+G = [1,2,3]
+G.extend [1,2,3] #[1,2,3,1,2,3]
+
+H = ["Vicky", "Guy", 11]
+H.append ["Vicky2", "Vicky3"] #["Vicky", "Guy", 11,["Vicky2", "Vicky3"]]
+
+#deleting an element from a list 
+I = ["Vicky2", "Vicky3"]
+del(A[1]) #Deletes "Vicky3"
+
+#Converting a string to a LIST 
+#The method split separates a string into a list based on the argument. 
+#If there is no argument as in this case the string is split using spaces
+"Hello Mike".split() #["Hello","Mike"]
+"A,B,C,D".split(",") #["A","B","C","D"]
+
+#Aliasing 
+#Multiple Lists reffering to the same object is known as aliasing
+ 
 ############################################################################################
 ############################################################################################
