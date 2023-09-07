@@ -133,4 +133,28 @@ del(A[1]) #Deletes "Vicky3"
 #Multiple Lists reffering to the same object is known as aliasing
  
 ############################################################################################
+#Dictionaries
+#type of collection 
+#dictionary has keys and values 
+#dictionaries are denoted with curly Brackets {}
+#the keys have to be immutable and unique
+#the values can be immutable, mutable and duplicates
+#Each key and value pair is spearated by comma 
+
+{"key":1, "key2":"2", "key3":[1,2,3], "key4":(4,5,3)}
+
+{"a":1,"b":2} #keys = "a","b"
+
+Dict={"A":1,"B":"2","C":[3,3,3],"D":(4,4,4),'E':5,'F':6}
+Dict["D"] #(4, 4, 4)
+
+DICTA["Thriller": "1982", "Back in Black": "1980", "The Bodyguard":"1992"] 
+DICTA["Graduation"] = "2007" #Adds value 2007 with new key code Graduation
+"The Bodyguard"in DICTA  #"The Bodyguard":"1992"
+
+del(DICT["Thriller"]) #gets rid of the key Thriller
+
+#to see ale the keys in the dictionary we use method .keys
+DICTA.keys() #outputs DICTA
+DICTA.values() #returns values 
 ############################################################################################
