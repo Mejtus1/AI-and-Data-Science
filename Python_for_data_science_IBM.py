@@ -39,6 +39,7 @@ my_variable = 1
 print(my_variable)
 #Variable names should be correlated with values or value they represent 
 
+##
 #Exercises:
 name = "Michael Jackson"
 print(name[0]) #M
@@ -180,7 +181,52 @@ del(A[1]) #Deletes "Vicky3"
 
 #Aliasing 
 #Multiple Lists reffering to the same object is known as aliasing
- 
+
+##
+#Exercises:
+#create a list
+L = ["Michael Jackson", 10.1, 1982] # # #
+
+#Lists can contain strings, floats, and integers
+["Michael Jackson", 10.1, 1982, [1, 2], ("A", 1)]
+
+#last two elements
+G = ["Michael Jackson", 10.1,1982,"MJ",1]
+G[3:5] #['MJ', 1]
+
+#add new elements to the list
+L = [ "Michael Jackson", 10.2]
+L.extend(['pop', 10])
+L #['Michael Jackson', 10.2, 'pop', 10]
+
+#As lists are mutable, we can change them
+# Change the element based on the index
+A = ["disco", 10, 1.2]
+print('Before change:', A)
+A[0] = 'hard rock'
+print('After change:', A)
+
+#delete an element of a list
+# Split the string, default is by space
+'hard rock'.split() #['hard', 'rock']
+
+#Split the string by comma
+'A,B,C,D'.split(',') #['A', 'B', 'C', 'D']
+
+#Copy and Clone List
+#When we set one variable B equal to A, both A and B are referencing the same list in memory
+A = ["hard rock", 10, 1.2]
+B = A
+print('A:', A) A: #['hard rock', 10, 1.2]
+print('B:', B) B: #['hard rock', 10, 1.2]
+
+#You can clone list A by using the following syntax
+# Clone (clone by value) the list A
+B = A[:]
+B
+
+
+
 ############################################################################################
 #Dictionaries
 #type of collection 
