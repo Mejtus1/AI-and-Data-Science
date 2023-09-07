@@ -8,7 +8,18 @@
 #Boolean 
 #True or False
 
+#Exercise: 
+#What version of Python are we using
+import sys
+print(sys.version)¨
+#3.11.2 (main, May  3 2023, 04:00:05) Clang 17.0.0 
+#(https://github.com/llvm/llvm-project) df82394e7a2d06506718cafa347b
 
+print("Hello world!")
+
+print(type(12.0)) #<class 'float'>
+type(float(2)) #Convert integer 2 to a float
+int(1.1) #Casting 1.1 to integer will result in loss of information
 
 ############################################################################################
 #Expressions and Variables
@@ -27,6 +38,44 @@ print(25//6)
 my_variable = 1
 print(my_variable)
 #Variable names should be correlated with values or value they represent 
+
+#Exercises:
+name = "Michael Jackson"
+print(name[0]) #M
+print(name[6]) #l
+print(name[13]) #o
+#negative indexing:
+print(name[-1]) #n
+print(name[-15]) #M
+#number of characters in a string
+len("Michael Jackson") #15
+#obtain multiple characters from a string using slicing
+name[0:4] #'Mich'
+name[8:12] #'Jack'
+#Stride
+#every second element 
+print(name[::2]) #'McalJcsn'
+print(name[0:5:2]) #'Mca'
+
+#Concatenate Strings
+statement = name + "is the best" # Concatenate two strings
+3 * "Michael Jackson" # Print the string for 3 times
+
+#Escape Sequences
+print(" Michael Jackson \n is the best" ) # New line escape sequence
+print(" Michael Jackson \t is the best" ) # Tab escape sequence
+
+#String Operations
+a = "Thriller is the sixth studio album"
+print("before upper:", a)
+b = a.upper() #THRILLER IS THE SIXTH STUDIO ALBUM
+print("After upper:", b)
+# Convert all the characters in string to upper case
+
+# Replace the old substring with the new target substring is the segment has been found in the string
+a = "Michael Jackson is the best"
+b = a.replace('Michael', 'Janet')
+b #'Janet Jackson is the best'
 
 
 
@@ -190,6 +239,8 @@ album_set_3 = {"Bon Apetit", "Last Friday Night"}
 album_set_3.issubset(album_set1) = True
 
 ############################################################################################
+#Conditions and Branching 
+
 
 ############################################################################################
 ############################################################################################
