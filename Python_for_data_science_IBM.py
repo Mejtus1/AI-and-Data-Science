@@ -452,7 +452,88 @@ i != 2 #False
 # Compare characters
 'BA' > 'AB' #True (first letter takes precedence in ordering)
 
+Branching (if else elif statements)
+Branching allows us to run different statements for different inputs
 
+# If statement example
+age = 19
+#expression that can be true or false
+if age > 18:
+    #expression that is run if the condition is true
+    print("you can enter" ) #you can enter
+#The statements after the if statement will run regardless if the condition is true or false 
+print("move on")
+
+#The else statement runs a block of code if none of the conditions are True before it 
+# Else statement example
+age2 = 18
+
+if age2 > 18:
+    print("you can enter" )
+else:
+    print("go see Meat Loaf" ) # go see Meat Loaf
+print("move on")
+
+#The elif statement, short for else if, allows us to check
+#additional conditions if the condition statements before it are False
+
+# Elif statment example
+age3 = 18
+
+if age3 > 18:
+    print("you can enter" )
+elif age3 == 18:
+    print("go see Pink Floyd")
+else:
+    print("go see Meat Loaf" )
+
+print("move on")
+
+
+# Condition statement example
+album_year = 1983
+
+if album_year > 1980:
+    print("Album year is greater than 1980")
+else:
+    print("less than 1980")
+
+print('do something..')
+
+# Logical operators
+# used when you want to compare more than one condition
+# and, or, not
+#The and statement is only True when both conditions are true
+# Condition statement example
+album_year3 = 1990
+
+if(album_year3 < 1980) or (album_year3 > 1989):
+    print ("Album was not made in the 1980's")
+else:
+    print("The Album was made in the 1980's ")
+
+# Condition statement example
+album_year = 1983 # The not statement checks if the statement is false
+if not (album_year == 1984):
+    print ("Album year is not 1984")
+
+#QUIZ
+#Write an if statement to determine if an album had a rating greater than 8
+rating = 8.5
+if rating > 8:
+    print ("This album is Amazing!")
+#Part2
+rating2 = 8
+if rating2 > 8:
+    print("This album is Amazing!")
+else:
+    print("Album is OK.")
+#Part3
+album4 = 1991
+if album4 < 1980:
+    print("Album came out before 1980.")
+elif album4 == 1991 or album4 == 1993:
+    print("Album came out in year 1991 or 1993")
 
 ############################################################################################
 ############################################################################################
