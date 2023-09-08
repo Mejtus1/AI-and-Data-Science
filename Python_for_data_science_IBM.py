@@ -150,6 +150,66 @@ NT[2][1]# = "disco"
 #We can even access Elements and characters inside Touples 
 NT[2][1][1]# = "r"
 
+#Touple Exercises
+tuple1 = ("disco",10,1.2 ) #('disco', 10, 1.2)
+type(tuple1) #touple
+# Print the variable on each index
+print(tuple1[0]) #disco
+print(tuple1[1]) #10
+print(tuple1[2]) #1.2
+print(type(tuple1[0])) #<class 'str'>
+print(type(tuple1[1])) #<class 'int'>
+print(type(tuple1[2])) #<class 'float'>
+# Use negative index
+tuple1[-1] #1.2
+# Concatenate two tuples
+tuple2 = tuple1 + ("hard rock", 10)
+tuple2 #('disco', 10, 1.2, 'hard rock', 10)
+# Slice from index 0 to index 2
+tuple2[0:3] #('hard rock', 10)
+# Get the length of tuple
+len(tuple2) #5
+
+Ratings = (0, 9, 6, 5, 10, 8, 9, 6, 2)
+# Sort the tuple
+RatingsSorted = sorted(Ratings)
+RatingsSorted #[0, 2, 5, 6, 6, 8, 9, 9, 10]
+
+# Create a nest tuple
+NestedT =(1, 2, ("pop", "rock") ,(3,4),("disco",(1,2)))
+
+# Print element on each index
+print("Element 0 of Tuple: ", NestedT[0]) #1
+print("Element 1 of Tuple: ", NestedT[1]) #2
+print("Element 2 of Tuple: ", NestedT[2]) #('pop', 'rock')
+print("Element 3 of Tuple: ", NestedT[3]) #(3, 4)
+print("Element 4 of Tuple: ", NestedT[4]) #('disco', (1, 2))
+
+# Print element on each index, including nest indexes
+print("Element 2, 0 of Tuple: ",   NestedT[2][0]) #pop  
+print("Element 2, 1 of Tuple: ",   NestedT[2][1]) #rock
+print("Element 3, 0 of Tuple: ",   NestedT[3][0]) #3
+print("Element 3, 1 of Tuple: ",   NestedT[3][1]) #4
+print("Element 4, 0 of Tuple: ",   NestedT[4][0]) #disco
+print("Element 4, 1 of Tuple: ",   NestedT[4][1]) #(1,2)
+
+# Print the first element in the second nested tuples
+NestedT[2][1][0] #'r'
+# Print the second element in the second nested tuples
+NestedT[2][1][1] #'o'
+
+# sample tuple
+genres_tuple = ("pop", "rock", "soul", "hard rock", "soft rock", \
+                "R&B", "progressive rock", "disco") 
+len(genres_tuple) # 8
+# Access the element, with respect to index 3
+genres_tuple[3] #'hard rock'
+# Use slicing to obtain indexes 3, 4 and 5
+genres_tuple[3:6] #('hard rock', 'soft rock', 'R&B')
+# Find the first two elements of the tuple genres_tuple
+genres_tuple[0:2]
+# Find the first index of "disco"
+genres_tuple.index("disco")
 
 #LISTS
 # - lists are oslo ordered sequences
