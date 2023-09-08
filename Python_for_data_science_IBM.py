@@ -577,6 +577,41 @@ while(year != 1973):
     
 print("It took ", i ,"repetitions to get out of loop.")
 
+#Exercises:
+#Write a for loop that prints out all the elements between -5 and 5 using the range function
+for i in range(-5, 5):
+    print(i)
+
+#Print the elements of the following list
+Genres=[ 'rock', 'R&B', 'Soundtrack', 'R&B', 'soul', 'pop']
+for Genre in Genres:
+    print(Genre)
+
+#Write a for loop that prints out the following list
+for square in squares:
+    print(square)
+
+#Write a while loop...
+PlayListRatings = [10, 9.5, 10, 8, 7.5, 5, 10, 10]
+i = 0
+Rating = PlayListRatings[0]
+while(i < len(PlayListRatings) and Rating >= 6):
+    print(Rating)
+    i = i + 1 # This prints the value 10 only once 
+    Rating = PlayListRatings[i]
+    i = i + 1 #Try uncommenting the line and comment the previous i = i + 1, 
+    #and see the difference, 10 value will get printed twice because when the loop starts it will print Rating and then with PlayListRatings[0], it will again assign the value 10 to Ratings.
+
+#Write a while loop...
+squares = ['orange', 'orange', 'purple', 'blue ', 'orange']
+new_squares = []
+i = 0
+while(i < len(squares) and squares[i] == 'orange'):
+    new_squares.append(squares[i])
+    i = i + 1
+print (new_squares)
+
+
 
 ############################################################################################
 ############################################################################################
