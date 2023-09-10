@@ -610,10 +610,62 @@ while(i < len(squares) and squares[i] == 'orange'):
     new_squares.append(squares[i])
     i = i + 1
 print (new_squares)
-
-
-
 ############################################################################################
+#Functions in Python
+
+#Functions
+#There are two types of functions :
+#Pre-defined functions
+#User defined functions
+#What is a Function?
+#You can define functions to provide the required functionality. Here are simple rules to define a function in Python:
+
+#Functions blocks begin def followed by the function name and parentheses ().
+#There are input parameters or arguments that should be placed within these parentheses.
+#You can also define parameters inside these parentheses.
+#There is a body within every function that starts with a colon (:) and is indented.
+#You can also place documentation before the body.
+#The statement return exits a function, optionally passing back a value
+
+#First function example: Add 1 to a and store as b
+def add(a):
+    """
+    add 1 to a
+    """
+    b = a + 1
+    print(a, "if you add one", b)
+    return(b)
+
+# Get a help on add function
+help(add)  #add 1 to a
+
+# Call the function add()
+add(1)  #1 if you add one 2
+
+# Call the function add()
+add(2)  #2 if you add one 3
+
+
+# Define a function for multiple two numbers
+def Mult(a, b):
+    c = a * b
+    return(c)
+    print('This is not printed')
+result = Mult(12,2)
+print(result) #24
+
+# Use mult() multiply two integers
+Mult(2, 3) #6
+
+# Use mult() multiply two floats
+Mult(10.0, 3.14) #31.40
+
+# Use mult() multiply two different type values together
+Mult(2, "Michael Jackson ")
+# But later in a program it can cause us an issues since it will expect integers and get strings
+
+
+
 ############################################################################################
 ############################################################################################
 ############################################################################################
