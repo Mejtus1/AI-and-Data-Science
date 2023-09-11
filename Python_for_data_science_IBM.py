@@ -695,6 +695,58 @@ MJ1()
 print(MJ())
 print(MJ1())
 
+#Functions Make Things Simple
+#Consider the two lines of code in Block 1 and Block 2: the procedure for each block is identical. 
+#The only thing that is different is the variable names and values
+
+#Block 1:
+# a and b calculation block1
+a1 = 4
+b1 = 5
+c1 = a1 + b1 + 2 * a1 * b1 - 1
+if(c1 < 0):
+    c1 = 0 
+else:
+    c1 = 5
+c1   
+
+#Block 2:
+# a and b calculation block2
+a2 = 0
+b2 = 0
+c2 = a2 + b2 + 2 * a2 * b2 - 1
+if(c2 < 0):
+    c2 = 0 
+else:
+    c2 = 5
+c2   
+
+#A function combines many instructions into a single line of code
+#Once a function is defined, it can be used repeatedly
+# Make a Function for the calculation above
+def Equation(a,b):
+    c = a + b + 2 * a * b - 1
+    if(c < 0):
+        c = 0 
+    else:
+        c = 5
+    return(c) 
+
+
+#Pre-defined functions
+
+#The print() function
+album_ratings = [10.0, 8.5, 9.5, 7.0, 7.0, 9.5, 9.0, 9.5] 
+print(album_ratings)
+
+# sum() adds every element in a list or tuple together
+sum(album_ratings)
+
+# Show the length of the list or tuple
+len(album_ratings)
+
+
+
 ############################################################################################
 ############################################################################################
 ############################################################################################
