@@ -745,7 +745,127 @@ sum(album_ratings)
 # Show the length of the list or tuple
 len(album_ratings)
 
+#Using if/else Statements and Loops in Functions
 
+# Function example
+# "return" statement is very useful 
+def type_of_album(artist, album, year_released):
+    
+    print(artist, album, year_released)
+    if year_released > 1980:
+        return "Modern"
+    else:
+        return "Oldie"
+    
+x = type_of_album("Michael Jackson", "Thriller", 1980)
+print(x)
+
+#print out each element in a list
+def PrintList(the_list):
+    for element in the_list:
+        print(element)
+
+PrintList(['1', 1, 'the man', "abc"]) #1, 1, the man, abc
+
+#Setting default argument values in your custom functions
+#You can set a default value for arguments in your function. 
+#isGoodRating() function create a threshold: 
+#Perhaps by default, we should have a default rating of 4
+
+# Example for setting param with default value
+def isGoodRating(rating=4): 
+    if(rating < 7):
+        print("this album sucks it's rating is",rating)
+        
+    else:
+        print("this album is good its rating is",rating)
+# Test the value with default value and with input
+isGoodRating() #this album sucks it's rating is 4
+isGoodRating(10) #this album is good its rating is 10
+
+#Global variables
+# Example of global variable
+artist = "Michael Jackson" #Global varaible 
+def printer1(artist):
+    internal_var1 = artist #local variable 
+    print(artist, "is an artist")
+printer1(artist)
+
+artist = "Michael Jackson"
+def printer(artist):
+    global internal_var             #assigned a local variable to global 
+    internal_var= "Whitney Houston"
+    print(artist,"is an artist")
+printer(artist) 
+printer(internal_var)
+
+
+#Scope of a Variable
+#The scope of a variable is the part of that program where that variable is accessible 
+#Variables that are declared outside of all function definitions, 
+#such as the myFavouriteBand variable in the code shown here, 
+#are accessible from anywhere within the program
+
+# Example of global variable
+myFavouriteBand = "AC/DC"
+def getBandRating(bandname):
+    if bandname == myFavouriteBand:
+        return 10.0
+    else:
+        return 0.0
+print("AC/DC's rating is:", getBandRating("AC/DC"))
+print("Deep Purple's rating is:",getBandRating("Deep Purple"))
+print("My favourite band is:", myFavouriteBand)
+
+# Example of global variable and local variable with the same name
+myFavouriteBand = "AC/DC"
+def getBandRating(bandname):
+    myFavouriteBand = "Deep Purple"
+    if bandname == myFavouriteBand:
+        return 10.0
+    else:
+        return 0.0
+print("AC/DC's rating is:",getBandRating("AC/DC"))
+print("Deep Purple's rating is: ",getBandRating("Deep Purple"))
+print("My favourite band is:",myFavouriteBand)
+#two myFavouriteBand variable definitions, first one of these has a global scope
+#the second of them is a local variable
+#Deep Purple will receive a rating of 10.0 when passed to the getBandRating function
+#outside of the getBandRating function, the getBandRating s local variable is not defined
+
+# Collections and Functions
+# When the number of arguments are unknown for a function, They can all be packed into a tuple as shown
+def printAll(*args): # All the arguments are 'packed' into args which can be treated like a tuple
+    print("No of arguments:", len(args)) 
+    for argument in args:
+        print(argument)
+#printAll with 3 arguments
+printAll('Horsefeather','Adonis','Bone')
+#printAll with 4 arguments
+printAll('Sidecar','Long Island','Mudslide','Carriage')
+
+#No of arguments: 3
+#Horsefeather
+#Adonis
+#Bone
+
+#No of arguments: 4
+#Sidecar
+#Long Island
+#Mudslide
+#Carriage
+
+#Functions can be incredibly powerful and versatile
+#They can accept (and return) data types, objects and even other functions as arguments. 
+def addItems(list):
+    list.append("Three")
+    list.append("Four")
+
+myList = ["One","Two"]
+addItems(myList)
+myList #['One', 'Two', 'Three', 'Four']
+
+    
 
 ############################################################################################
 ############################################################################################
