@@ -865,8 +865,112 @@ myList = ["One","Two"]
 addItems(myList)
 myList #['One', 'Two', 'Three', 'Four']
 
-    
+Quiz on Functions
+
+Come up with a function that divides the first input by the second input
+def div(a, b):
+    return(a/b)
+
+Use the function con for the following question
+def con(a, b):
+    return(a + b)
 
 ############################################################################################
+#What is an Exception?
+#An exception is an error that occurs during the execution of code
+#This error causes the code to raise an exception and if not prepared to handle it will halt the execution of the code.
+#Examples:
+1/0 #ZeroDivisionError occurs when you try to divide by zero
+y = a + 5 #NameError use the variable a when it was not defined
+a = [1, 2, 3]
+a[10] #IndexError tried to access data from a list using an index that does not exist for this list
+
+#Exception Handling
+#A try except will allow you to execute code that might raise an exception 
+#and in the case of any exception or a specific one we can handle or catch the exception and execute specific code
+#This will allow us to continue the execution of our program even if there is an exception
+
+#Python tries to execute the code in the try block 
+#In this case if there is any exception raised by the code in the try block, 
+#it will be caught and the code block in the except block will be executed 
+#After that, the code that comes after the try except will be executed
+
+a = 1
+try:
+    b = int(input("Please enter a number to divide a"))
+    a = a/b
+    print("Success a=",a)
+except:
+    print("There was an error")        
+#Please enter a number to divide a 5
+#Success a= 0.2
+
+#Try Except Specific
+#A specific try except allows you to catch certain exceptions and also execute certain code depending on the exception 
+#This is useful if you do not want to deal with some exceptions and the execution should halt 
+#It can also help you find errors in your code that you might not be aware of 
+#Furthermore, it can help you differentiate responses to different exceptions 
+#In this case, the code after the try except might not run depending on the error
+a = 1
+try:
+    b = int(input("Please enter a number to divide a"))
+    a = a/b
+    print("Success a=",a)
+except ZeroDivisionError:
+    print("The number you provided cant divide 1 because it is 0")
+except ValueError:
+    print("You did not provide a number")
+except:
+    print("Something went wrong")
+#Please enter a number to divide a 8
+#Success a= 0.125
+
+#Please enter a number to divide a 
+#You did not provide a number
+
+#Please enter a number to divide a 0
+#The number you provided cant divide 1 because it is 0
+
+#Try Except Else and Finally
+#else allows one to check if there was no exception when executing the try block 
+#this is useful when we want to execute something only if there were no errors
+a = 1
+try:
+    b = int(input("Please enter a number to divide a"))
+    a = a/b
+except ZeroDivisionError:
+    print("The number you provided cant divide 1 because it is 0")
+except ValueError:
+    print("You did not provide a number")
+except:
+    print("Something went wrong")
+else:
+    print("success a=",a)
+finally:
+    print("Processing Complete")
+#Please enter a number to divide a 5
+#success a= 0.2
+#Processing Complete
+
+#Please enter a number to divide a 
+#You did not provide a number
+#Processing Complete
+
+#Exercise
+def safe_divide(numerator,denominator):
+    try:
+        result = numerator / denominator
+        return result
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero.")
+        return None
+# Test case
+numerator=int(input("Enter the numerator value:-"))
+denominator=int(input("Enter the denominator value:-"))
+print(safe_divide(numerator,denominator)) 
+#Enter the numerator value:- 3
+#Enter the denominator value:- 2
+#1.5
+
 ############################################################################################
 ############################################################################################
