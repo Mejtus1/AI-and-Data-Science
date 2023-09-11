@@ -664,7 +664,36 @@ Mult(10.0, 3.14) #31.40
 Mult(2, "Michael Jackson ")
 # But later in a program it can cause us an issues since it will expect integers and get strings
 
+#Variables
+#The input to a function is called a formal parameter
+#A variable that is declared inside a function is called a local variable. 
+#The parameter only exists within the function (i.e. the point where the function starts and stops).
+#A variable that is declared outside a function definition is a global variable, 
+#and its value is accessible and modifiable throughout the program. We will discuss more about global variables at the end of the lab.
 
+# Function Definition
+def square(a):
+    # Local variable b
+    b = 1
+    c = a * a + b
+    print(a, "if you square + 1", c) 
+    return(c)
+
+#If there is no return statement, the function returns None
+def MJ():
+    print('Michael Jackson')
+    
+def MJ1():
+    print('Michael Jackson')
+    return(None)
+# See the output
+MJ()
+MJ1()
+
+#Create a function con that concatenates two strings using the addition operation:
+# See what functions returns are
+print(MJ())
+print(MJ1())
 
 ############################################################################################
 ############################################################################################
