@@ -1058,3 +1058,32 @@ FatYellowRectangle.color
 FatYellowRectangle.drawRectangle()
 
 ############################################################################################
+#Reading Files with Open
+
+
+# Read the Example1.txt
+example1 = "example1.txt"
+file1 = open(example1, "r")
+
+# Print the path of file
+file1.name
+
+# Print the mode of file, either 'r' or 'w'
+file1.mode
+
+# Read the file and assign it to a variable
+FileContent = file1.read()
+FileContent
+
+# Print the file with '\n' as a new line
+print(FileContent)
+
+# Type of file content
+type(FileContent)
+
+#It is very important that the file is closed in the end
+#This frees up resources and ensures consistency across different python versions
+# Close file after finish
+file1.close()
+
+#A Better Way to Open a File
