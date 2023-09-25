@@ -1087,3 +1087,156 @@ type(FileContent)
 file1.close()
 
 #A Better Way to Open a File
+#- using the with statement is better practice, it automatically closes the file even if the code encounters an exception 
+#- the code will run everything in the indent block then close the file object.
+# Open file using with
+with open(example1, "r") as file1:
+    FileContent = file1.read()
+    print(FileContent) #This is line 1 
+                       #This is line 2
+                       #This is line 3
+
+# Verify if the file is closed
+file1.closed #True
+
+# Read first four characters
+with open(example1, "r") as file1:
+    print(file1.read(4)) #This 
+# If we call the method again, the next 4 characters are called
+with open(example1, "r") as file1:
+    print(file1.read(4)) #This
+    print(file1.read(4)) # is 
+    print(file1.read(7)) #line 1
+    print(file1.read(15))#This is line 2
+
+# read one line of the file at a time using the method readline()
+with open(example1, "r") as file1:
+    print("first line: " + file1.readline())
+    #first line: This is line 1 
+
+#- we can also pass an argument to readline() to specify the number of charecters we want to read 
+#- unlike  read(),  readline() can only read one line at most
+with open(example1, "r") as file1:
+    print(file1.readline(20)) # does not read past the end of line
+    print(file1.read(20)) # Returns the next 20 chars
+#This is line 1 
+
+#This is line 2
+#This 
+
+# Iterate through the lines
+with open(example1,"r") as file1:
+        i = 0;
+        for line in file1:
+            print("Iteration", str(i), ": ", line)
+            i = i + 1
+
+############################################################################################
+#Writing Files
+# Write line to file
+exmp2 = '/Example2.txt'
+with open(exmp2, 'w') as writefile:
+    writefile.write("This is line A")
+
+# Read file
+with open(exmp2, 'r') as testwritefile:
+    print(testwritefile.read()) #This is line A
+
+# Write lines to file
+with open(exmp2, 'w') as writefile:
+    writefile.write("This is line A\n")
+    writefile.write("This is line B\n")
+
+# Check whether write to file
+with open(exmp2, 'r') as testwritefile:
+    print(testwritefile.read()) #This is line A
+                                #This is line B
+
+# Sample list of text
+Lines = ["This is line A\n", "This is line B\n", "This is line C\n"]
+
+# Write the strings in the list to text file
+with open('/Example2.txt', 'w') as writefile:
+    for line in Lines:
+        print(line)
+        writefile.write(line)
+#This is line A
+#This is line B
+#This is line C
+
+# Verify if writing to file is successfully executed
+with open('/Example2.txt', 'r') as testwritefile:
+    print(testwritefile.read())
+
+#setting the mode to w overwrites all the existing data in the file
+with open('/Example2.txt', 'w') as writefile:
+    writefile.write("Overwrite\n")
+with open('/Example2.txt', 'r') as testwritefile:
+    print(testwritefile.read())
+#Overwrite
+
+
+#Appending Files
+#write to files without losing any of the existing data by setting the mode argument to append: a
+with open('/Example2.txt', 'a') as testwritefile:
+    testwritefile.write("This is line C\n")
+    testwritefile.write("This is line D\n")
+    testwritefile.write("This is line E\n")
+#you can verify the file has changed by running the following cell
+with open('/Example2.txt', 'r') as testwritefile:
+    print(testwritefile.read())
+
+
+#Additional modes
+#It's fairly ineffecient to open the file in a or w and then reopening it in r to read any lines 
+# r+ : Reading and writing. Cannot truncate the file.
+# w+ : Writing and reading. Truncates the file.
+# a+ : Appending and Reading. Creates a new file, if none exists. You dont have to dwell on the specifics of each mode for this lab.
+with open('/Example2.txt', 'a+') as testwritefile:
+    testwritefile.write("This is line E\n")
+    print(testwritefile.read())
+
+# .tell() - returns the current position in bytes
+# .seek(offset,from) - changes the position by 'offset' bytes with respect to 'from' 
+
+with open('/Example2.txt', 'a+') as testwritefile:
+    print("Initial Location: {}".format(testwritefile.tell()))
+    
+    data = testwritefile.read()
+    if (not data):  #empty strings return false in python
+            print('Read nothing') 
+    else: 
+            print(testwritefile.read())
+            
+    testwritefile.seek(0,0) # move 0 bytes from beginning.
+    
+    print("\nNew Location : {}".format(testwritefile.tell()))
+    data = testwritefile.read()
+    if (not data): 
+            print('Read nothing') 
+    else: 
+            print(data)
+    
+    print("Location after read: {}".format(testwritefile.tell()) )
+
+# Initial Location: 55
+# Read nothing
+
+# New Location : 0
+# Overwrite
+# This is line C
+# This is line D
+# This is line E
+
+# Location after read: 55
+######## 
+
+#Copy a File
+
+# Copy file to another
+with open('/Example2.txt','r') as readfile:
+    with open('/Example3.txt','w') as writefile:
+          for line in readfile:
+                writefile.write(line)
+
+############################################################################################
