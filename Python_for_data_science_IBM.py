@@ -1250,9 +1250,10 @@ with open('/Example2.txt','r') as readfile:
 #A Pandas DataFrame will be created by loading the datasets from existing storage
 #Storage can be SQL Database, CSV file, Excel file
 #It can also be created from the lists, dictionaries, and from a list of dictionaries
-#Series represents a one-dimensional array of indexed data. It has two main components :
-#An array of actual data, An associated array of indexes or data labels, 
-# 
+
+#Series 
+#represents a one-dimensional array of indexed data. It has two main components :
+# An array of actual data, An associated array of indexes or data labels, 
 # Index is used to access individual data values
 
 
@@ -1305,4 +1306,54 @@ z
 # 3	 Infrastructure	60000	4
 
 ############################################################################################
-#PANDAS 
+#PANDAS basics exercise
+
+a = {
+     'Student':['David', 'Samuel', 'Terry', 'Evan'],
+     'Age':['27', '24', '22', '32'],
+     'Country':['UK', 'Canada', 'China', 'USA'],
+     'Course':['Python','Data Structures','Machine Learning','Web Development'],
+     'Marks':['85','72','89','76']
+    }
+df1 = pd.DataFrame(a)
+df1
+#   Student	 Age	Country	    Course	          Marks
+#0	David	 27	    UK	        Python	          85
+#1	Samuel	 24	    Canada	    Data Structures	  72
+#2	Terry	 22	    China	    Machine Learning  89
+#3	Evan	 32	    USA	        Web Development	  76
+
+b = df1[['Marks']]
+b
+#	Marks
+#0	85
+#1	72
+#2	89
+#3	76
+
+c = df1[['Course', 'Country']]
+c
+#Course	Country
+#0	Python	UK
+#1	Data Structures	Canada
+#2	Machine Learning	China
+#3	Web Development	USA
+
+##!!!!##
+#To view the column as a series, just use one bracket
+
+# Get the Student column as a series Object
+x = df1['Student']
+x
+
+#0     David
+#1    Samuel
+#2     Terry
+#3      Evan
+#Name: Student, dtype: object
+
+#check the type of x
+type(x)
+# pandas.core.series.Series
+
+############################################################################################
