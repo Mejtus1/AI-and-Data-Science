@@ -1399,3 +1399,158 @@ df2. loc['Jane', 'Department']
 
 df2.iloc[3, 2]
 #60000
+
+#Slicing 
+#Slicing uses the [] operator to select a set of rows and/or columns from a DataFrame
+
+df.iloc[0:2, 0:3] # 0:2 = 0,1 ; 0:3 = Name, ID, Department 
+#	Name	ID	Department
+#0	Rose	1	Architect Group
+#1	John	2	Software Group
+
+df.loc[0:2,'ID':'Department']
+#   ID	Department
+#0	1	Architect Group
+#1	2	Software Group
+#2	3	Design Team
+
+df2.loc['Rose':'Jane', 'ID':'Department'] #From Tose to Jane, select ID and Department 
+#        ID	Department
+#Name		
+#Rose	1	Architect Group
+#John	2	Software Group
+#Jane	3	Design Team
+
+############################################################################################
+#Artist	            Album	            Released	    Length	    Genre	                   recording sales (millions)	Claimed sales (millions)	Released	Soundtrack	Rating (friends)
+#Michael Jackson	    Thriller	        1982	        00:42:19	Pop, rock, R&B	            46	                                65	                30-Nov-82		            10.0
+#AC/DC	            Back in Black	    1980	        00:42:11	Hard rock	                26.1	                            50	                25-Jul-80		            8.5
+#Pink Floyd	 The Dark Side of the Moon	1973	        00:42:49	Progressive rock	        24.2	                            45	                01-Mar-73		            9.5
+#Whitney Houston	    The Bodyguard	    1992	        00:57:44	Soundtrack/R&B, soul, pop	26.1	                            50	                25-Jul-80	    Y	        7.0
+#Meat Loaf	        Bat Out of Hell	    1977	        00:46:33	Hard rock, progressive rock	20.6	                            43	                21-Oct-77		            7.0
+#Eagles	            Their Greatest Hits (1971-1975)		00:43:08	Rock, soft rock, folk rock	32.2	                            42	                17-Feb-76		            9.5
+#Bee Gees	        Saturday Night Fever 1977	        1:15:54	    Disco	                    20.6	                            40	                15-Nov-77	    Y	        9.0
+#Fleetwood Mac	    Rumours	             1977	        00:40:01	Soft rock	                27.9	                            40	                04-Feb-77		            9.5
+
+#Introduction to PANDAS 
+# Dependency needed to install file 
+
+# If running the notebook on your machine, else leave it commented
+#!pip install xlrd
+
+#!pip install openpyxl 
+import piplite
+await piplite.install(['xlrd','openpyxl'])
+
+# Import required library
+import pandas as pd
+
+# Read data from CSV file
+
+# csv_path = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%204/data/TopSellingAlbums.csv'
+# df = pd.read_csv(csv_path)
+
+from pyodide.http import pyfetch
+import pandas as pd
+
+filename = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%204/data/TopSellingAlbums.csv"
+
+async def download(url, filename):
+    response = await pyfetch(url)
+    if response.status == 200:
+        with open(filename, "wb") as f:
+            f.write(await response.bytes())
+
+
+await download(filename, "TopSellingAlbums.csv")
+df = pd.read_csv("TopSellingAlbums.csv")
+
+# Read data from Excel File and print the first five rows
+xlsx_path = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/jupyterlite/files/Module%205/data/TopSellingAlbums.xlsx'
+
+await download(xlsx_path, "TopSellingAlbums.xlsx")
+df = pd.read_excel("TopSellingAlbums.xlsx")
+df.head()
+
+# Access to the column Length
+x = df[['Length']]
+x
+#Length
+#0	0:42:19
+#1	0:42:11
+#2	0:42:49
+#3	0:57:44
+#4	0:46:33
+#5	0:43:08
+#6	1:15:54
+#7	0:40:01
+
+#Viewing Data and Accessing Data
+
+# Get the column as a series
+x = df['Length']
+x
+#0    0:42:19
+#1    0:42:11
+#2    0:42:49
+#3    0:57:44
+#4    0:46:33
+#5    0:43:08
+#6    1:15:54
+#7    0:40:01
+#Name: Length, dtype: object
+
+# Get the column as a dataframe
+x = df[['Artist']] 
+type(x) #pandas.core.frame.DataFrame
+
+# Access to multiple columns
+y = df[['Artist','Length','Genre']]
+y
+#Artist	Length	Genre
+#0	Michael Jackson	0:42:19	pop, rock, R&B
+#1	AC/DC	0:42:11	hard rock
+#2	Pink Floyd	0:42:49	progressive rock
+#3	Whitney Houston	0:57:44	R&B, soul, pop
+#4	Meat Loaf	0:46:33	hard rock, progressive rock
+#5	Eagles	0:43:08	rock, soft rock, folk rock
+#6	Bee Gees	1:15:54	disco
+#7	Fleetwood Mac	0:40:01	soft rock
+
+# Access the value on the first row and the first column
+df.iloc[0, 0]
+#'Michael Jackson'
+
+# Access the value on the second row and the first column
+df.iloc[1,0]
+#'AC/DC'
+
+# Access the value on the first row and the third column
+df.iloc[0,2]
+#1982
+
+# Access the column using the name
+df.loc[1, 'Artist']
+#'AC/DC'
+
+# Access the column using the name
+df.loc[0, 'Released']
+#1982
+
+# Access the column using the name
+df.loc[1, 'Released']
+#1980
+
+# Slicing the dataframe
+df.iloc[0:2, 0:3]
+#	Artist	  Album	             Released
+#0	Michael   Jackson Thriller	 1982
+#1	AC/DC	  Back in Black	     1980
+
+# Slicing the dataframe using name
+df.loc[0:2, 'Artist':'Released']
+#	Artist	  Album	             Released
+#0	Michael   Jackson Thriller	 1982
+#1	AC/DC	  Back in Black	     1980
+
+############################################################################################
