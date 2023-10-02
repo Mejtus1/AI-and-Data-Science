@@ -1240,3 +1240,69 @@ with open('/Example2.txt','r') as readfile:
                 writefile.write(line)
 
 ############################################################################################
+#PANDAS 
+#Pandas is a popular library for data analysis built on top of the Python programming language
+#Pandas generally provide two data structures for manipulating data
+#DataFrame, Series
+
+#A DataFrame is a two-dimensional data structure = data is aligned in a tabular fashion in rows and columns
+
+#A Pandas DataFrame will be created by loading the datasets from existing storage
+#Storage can be SQL Database, CSV file, Excel file
+#It can also be created from the lists, dictionaries, and from a list of dictionaries
+#Series represents a one-dimensional array of indexed data. It has two main components :
+#An array of actual data, An associated array of indexes or data labels, 
+# 
+# Index is used to access individual data values
+
+
+# Pandas: DataFrame
+# let us import the Pandas Library
+import pandas as pd # as meaning alias 
+
+#
+#Define a dictionary 'x'
+x = {
+    'Name': ['Rose','John', 'Jane', 'Mary'], 
+     'ID': [1, 2, 3, 4], 
+     'Department': ['Architect Group', 'Software Group', 'Design Team', 'Infrastructure'], 
+     'Salary':[100000, 80000, 50000, 60000]
+     }
+#casting the dictionary to a DataFrame
+df = pd.DataFrame(x) #using pd = pandas, function DataFrame for our dictionary x 
+#display the result df
+df
+#Name	ID	Department	Salary
+#0	Rose	1	Architect Group	100000
+#1	John	2	Software Group	80000
+#2	Jane	3	Design Team	50000
+#3	Mary	4	Infrastructure	60000
+
+
+#Column Selection
+
+#Retrieving the "ID" column and assigning it to a variable x
+x = df[['ID']]
+x
+#ID
+# 0  1
+# 1	 2 
+# 2	 3
+# 3	 4
+
+#check the type of x
+type(x)
+#pandas.core.series.Series
+
+#Access to multiple columns
+#Retrieving the Department, Salary and ID columns and assigning it to a variable z
+z = df[['Department','Salary','ID']]
+z
+#	 Department	Salary	ID
+# 0	 Architect Group	100000	1
+# 1	 Software Group	80000	2
+# 2	 Design Team	50000	3
+# 3	 Infrastructure	60000	4
+
+############################################################################################
+#PANDAS 
