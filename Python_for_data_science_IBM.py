@@ -1357,3 +1357,45 @@ type(x)
 # pandas.core.series.Series
 
 ############################################################################################
+#loc() and iloc() functions
+
+# loc() = label-based data selecting method 
+# (pass the name of the row or column that we want to select)
+# includes the last element of the range passed in it
+# Syntax = loc[row_label, column_label]
+
+# iloc() = indexed-based selecting method 
+# (pass an integer index in the method to select a specific row/column)
+# This method does not include the last element of the range passed in it
+# Syntax = iloc[row_index, column_index]
+
+# Access the value on the first row and the first column
+df.iloc[0, 0]
+# 'Rose'
+
+# Access the value on the first row and the third column
+df.iloc[0,2]
+# 'Architect Group'
+
+# Access the column using the name
+df.loc[0, 'Salary']
+# 100000
+
+#	ID	Department	Salary
+#Name			
+#Rose	1	Architect Group	100000
+#John	2	Software Group	80000
+#Jane	3	Design Team	50000
+#Mary	4	Infrastructure	60000
+
+df2=df
+df2=df2.set_index("Name")
+
+df2.loc['Jane', 'Salary']
+#50000
+
+df2. loc['Jane', 'Department']
+#'Design Team'
+
+df2.iloc[3, 2]
+#60000
