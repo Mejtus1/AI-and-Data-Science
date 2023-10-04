@@ -1554,3 +1554,107 @@ df.loc[0:2, 'Artist':'Released']
 #1	AC/DC	  Back in Black	     1980
 
 ############################################################################################
+## 
+
+# Create a python list
+a = ["0", 1, "two", "3", 4]
+
+# Print each element
+print("a[0]:", a[0])
+print("a[1]:", a[1])
+print("a[2]:", a[2])
+print("a[3]:", a[3])
+print("a[4]:", a[4])
+
+# Numpy
+# python library used for arrays, linear algebra, fourier transform, and matrices 
+# NumPy = numerical python 
+
+import numpy as np # np is used as alias
+
+# Create a numpy array
+a = np.array([0, 1, 2, 3, 4])
+a #
+
+# Print each element
+print("a[0]:", a[0]) #a[0]: 0
+print("a[1]:", a[1]) #a[1]: 1
+print("a[2]:", a[2]) #a[2]: two
+print("a[3]:", a[3]) #a[3]: 3
+print("a[4]:", a[4]) #a[4]: 4
+
+#NumPy version string
+print(np.__version__) #
+
+# Check the type of the array
+type(a) #
+
+# Check the type of the array
+type(a) #
+
+# Check the type of the values stored in numpy array
+a.dtype #
+
+b = np.array([3.1, 11.02, 6.2, 213.2, 5.2])
+type(b)
+b.dtype #
+# float 64
+
+# Assign value
+# change the value of the array
+# Create numpy array
+c = np.array([20, 1, 2, 3, 4])
+c #
+
+# Assign the first element to 100
+c[0] = 100
+c #
+
+# Assign the 5th element to 0
+c[4] = 0
+c #
+
+a = np.array([10, 2, 30, 40,50])
+a[1] = 20
+a #
+
+Slicing
+taking the elements from the given index to another given index
+# Slicing the numpy array
+d = c[1:4]
+d #
+
+# Set the fourth element and fifth element to 300 and 400
+c[3:5] = 300, 400
+c #
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+print(arr[1:5:2])
+#define the steps in slicing: [start:end:step]
+
+# If we don't pass start its considered 0
+print(arr[:4]) #
+
+# If we don't pass end it considers till the length of array
+print(arr[4:]) #
+
+# If we don't pass step its considered 1
+print(arr[1:5:]) #
+
+# Print the even elements in the given array
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+print(arr[0:9:1] #
+
+# Assign Value with List
+# select more than one specific index
+# Create the index list
+select = [0, 2, 3, 4]
+select #
+
+# Use List to select elements
+d = c[select]
+d
+
+# Assign the specified elements to new value
+c[select] = 100000
+c
