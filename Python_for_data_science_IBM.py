@@ -1574,7 +1574,7 @@ import numpy as np # np is used as alias
 
 # Create a numpy array
 a = np.array([0, 1, 2, 3, 4])
-a #
+a #array([0, 1, 2, 3, 4])
 
 # Print each element
 print("a[0]:", a[0]) #a[0]: 0
@@ -1584,13 +1584,13 @@ print("a[3]:", a[3]) #a[3]: 3
 print("a[4]:", a[4]) #a[4]: 4
 
 #NumPy version string
-print(np.__version__) #
+print(np.__version__) #1.24.2
 
 # Check the type of the array
-type(a) #
+type(a) #numpy.ndarray
 
 # Check the type of the array
-type(a) #
+type(a) #dtype('int32')
 
 # Check the type of the values stored in numpy array
 a.dtype #
@@ -1604,15 +1604,15 @@ b.dtype #
 # change the value of the array
 # Create numpy array
 c = np.array([20, 1, 2, 3, 4])
-c #
+c #array([20,  1,  2,  3,  4])
 
 # Assign the first element to 100
 c[0] = 100
-c #
+c #array([100,   1,   2,   3,   4])
 
 # Assign the 5th element to 0
 c[4] = 0
-c #
+c #array([100,   1,   2,   3,   0])
 
 a = np.array([10, 2, 30, 40,50])
 a[1] = 20
@@ -1622,39 +1622,314 @@ Slicing
 taking the elements from the given index to another given index
 # Slicing the numpy array
 d = c[1:4]
-d #
+d #array([1, 2, 3])
 
 # Set the fourth element and fifth element to 300 and 400
 c[3:5] = 300, 400
-c #
+c #array([100,   1,   2, 300, 400])
 
 arr = np.array([1, 2, 3, 4, 5, 6, 7])
-print(arr[1:5:2])
+print(arr[1:5:2]) #[2 4]
 #define the steps in slicing: [start:end:step]
 
 # If we don't pass start its considered 0
-print(arr[:4]) #
+print(arr[:4]) #[1 2 3 4]
 
 # If we don't pass end it considers till the length of array
-print(arr[4:]) #
+print(arr[4:]) #[5 6 7]
 
 # If we don't pass step its considered 1
-print(arr[1:5:]) #
+print(arr[1:5:]) #[2 3 4 5]
 
 # Print the even elements in the given array
 arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
-print(arr[0:9:1] #
+print(arr[0:9:1] #[2 4 6 8]
 
 # Assign Value with List
 # select more than one specific index
 # Create the index list
 select = [0, 2, 3, 4]
-select #
+select #[0, 2, 3, 4]
 
 # Use List to select elements
 d = c[select]
-d
+d #array([100,   2, 300, 400])
 
 # Assign the specified elements to new value
 c[select] = 100000
-c
+c #array([100000,      1, 100000, 100000, 100000])
+
+#Other Attributes
+# Create a numpy array
+a = np.array([0, 1, 2, 3, 4])
+a #array([0, 1, 2, 3, 4])
+
+# The attribute size is the number of elements in the array
+# Get the size of numpy array
+a.size #5
+
+# Get the number of dimensions of numpy array 
+a.ndim #1
+
+# Get the shape/size of numpy array
+# size of the array in each dimension
+a.shape #(5,)
+
+#exercise 
+b = np.array([10, 20, 30, 40, 50, 60, 70])
+b.ndim #1 dimensional array
+b.shape #(7,) number of elements in each dimension 
+b.size #7
+
+Numpy Statistical Functions
+# Create a numpy array
+a = np.array([1, -1, 1, -1])
+
+# Get the mean of numpy array
+mean = a.mean()
+mean # 0.0
+
+# Get the standard deviation of numpy array
+standard_deviation=a.std()
+standard_deviation # 1.0
+
+# Create a numpy array
+b = np.array([-1, 2, 3, 4, 5])
+b # array([-1,  2,  3,  4,  5])
+
+# Get the biggest value in the numpy array
+max_b = b.max()
+max_b # 5
+
+# Get the smallest value in the numpy array
+
+min_b = b.min()
+min_b # -1
+
+c = np.array([-10, 201, 43, 94, 502])
+
+# Exercise
+#Find the sum of maximum and minimum value in the given numpy array
+c = np.array([-10, 201, 43, 94, 502])
+max_c = c.max()
+max_c
+    
+min_c = c.min()
+min_c
+    
+Sum = (max_c +min_c)
+Sum
+
+########################
+# Numpy Array Operations
+
+# Array Addition
+u = np.array([1, 0])
+v = np.array([0, 1])
+z = np.add(u, v)
+z # array([1, 1])
+
+# vector addition
+# Plotting functions
+
+
+import time # time functionality in python 
+import sys # allows python to work with your system
+import numpy as np #numerical python library
+
+import matplotlib.pyplot as plt #matplotlib visualization library for python 
+%matplotlib inline  
+
+def Plotvec1(u, z, v):
+    
+    ax = plt.axes() # to generate the full window axes
+    
+    ax.arrow(0, 0, *u, head_width=0.05, color='r', head_length=0.1)# Add an arrow to the  U Axes with arrow head width 0.05, color red and arrow head length 0.1
+    plt.text(*(u + 0.1), 'u')#Adds the text u to the Axes 
+    
+    ax.arrow(0, 0, *v, head_width=0.05, color='b', head_length=0.1)# Add an arrow to the  v Axes with arrow head width 0.05, color red and arrow head length 0.1
+    plt.text(*(v + 0.1), 'v')#Adds the text v to the Axes 
+    
+    ax.arrow(0, 0, *z, head_width=0.05, head_length=0.1)
+    plt.text(*(z + 0.1), 'z')#Adds the text z to the Axes 
+
+    plt.ylim(-2, 2)#set the ylim to bottom(-2), top(2)
+    plt.xlim(-2, 2)#set the xlim to left(-2), right(2)
+
+# Plot numpy arrays
+Plotvec1(u, z, v)
+
+#Exercise
+arr1 = np.array([10, 11, 12, 13, 14, 15])
+arr2 = np.array([20, 21, 22, 23, 24, 25])
+
+# Enter your code here
+j = np.add(arr1, arr2)
+j #array([30, 32, 34, 36, 38, 40])
+
+
+# Array subtraction 
+aa = np.array([10, 20, 30])
+aa
+
+bb = np.array([5, 10, 15])
+bb
+
+c = np.subtract(a, b)
+print(c) #[ 5 10 15]
+
+#Exercise
+arr3 = np.array([10, 20, 30, 40, 50, 60])
+arr4 = np.array([20, 21, 22, 23, 24, 25])
+
+# Enter your code here
+gg = np.subtract(arr3, arr4)
+gg
+
+#Array Multiplication
+# Create a numpy array
+x = np.array([1, 2])
+x #array([1, 2])
+# Create a numpy array
+y = np.array([2, 1])
+y #array([2, 1])
+# Numpy Array Multiplication
+z = np.multiply(x, y)
+z #array([2, 2])
+
+#Exercise 
+arr7 = np.array([10, 20, 30, 40, 50, 60])
+arr8 = np.array([2, 1, 2, 3, 4, 5])
+ggg = np.multiply(arr7, arr8)
+ggg #array([ 20,  20,  60, 120, 200, 300])
+
+
+# Array Division
+q = np.array([10, 20, 30])
+q # array([10, 20, 30])
+w = np.array([2, 10, 5])
+w # array([ 2, 10,  5])
+e = np.divide(a, b)
+e # array([2., 2., 2.])
+
+# Exercise
+arr5 = np.array([10, 20, 30, 40, 50, 60])
+arr7 = np.array([3, 5, 10, 8, 2, 33])
+arrr = np.divide(arr5, arr7)
+arrr #array([ 3.33333333,  4.        ,  3.        ,  5.        , 25.        ,1.81818182])
+
+############
+#Dot Product
+# dot product of the two numpy arrays u and v is given by
+X = np.array([1, 2])
+Y = np.array([3, 2])
+
+# Calculate the dot product
+np.dot(X, Y) #7
+
+#Elements of X
+print(X[0]) # 1
+print(X[1]) # 2 
+
+#Elements of Y
+print(Y[0]) # 3
+print(Y[1]) # 2
+
+# Elemtns of X              Elements of Y 
+#  X[0]   X[1]              Y[0]    Y[1]
+# X = X[1, 2]               Y = [3, 2]
+# X.Y = [ (X[0] * Y[0]) + (X[1] * Y[1]) ]
+#              [(1 * 3) + (2 * 2)]
+#                 [  3  +  4  ]
+#                       7
+
+#Exercise
+arr1 = np.array([3, 5])
+arr2 = np.array([2, 4])
+arr7 = np.dot(arr1, arr2)
+arr7 #26
+
+
+#Adding Constant to a Numpy Array
+# Create a constant to numpy array
+u = np.array([1, 2, 3, -1]) 
+u #array([ 1,  2,  3, -1])
+
+# Add the constant to array
+u + 1 #array([2, 3, 4, 0])
+
+#Exercise
+#Add Constant 5 to the given numpy array ar
+arrr5 = np.array([1, 2, 3, -1]) 
+arrr5 + 1 # array([2, 3, 4, 0])
+
+######################
+#Mathematical Functions
+
+# The value of pi
+np.pi #3.141592653589793
+
+# Create the numpy array in radians
+x = np.array([0, np.pi/2 , np.pi])
+
+# Calculate the sin of each elements
+y = np.sin(x)
+y #array([0.0000000e+00, 1.0000000e+00, 1.2246468e-16])
+
+#Linspace
+#Linspace returns evenly spaced numbers over a specified interval
+#numpy.linspace(start, stop, num = int value)
+#
+#start : start of interval range
+#
+#stop : end of interval range
+#
+#num : Number of samples to generate
+
+# Makeup a numpy array within [-2, 2] and 5 elements
+np.linspace(-2, 2, num=5) 
+#array([-2., -1.,  0.,  1.,  2.])
+
+# Make a numpy array within [-2, 2] and 9 elements
+np.linspace(-2, 2, num=9) 
+#array([-2. , -1.5, -1. , -0.5,  0. ,  0.5,  1. ,  1.5,  2. ])
+
+# Make a numpy array within [0, 2π] and 100 elements 
+x = np.linspace(0, 2*np.pi, num=100)
+x #array([0.        , 0.06346652, 0.12693304, 0.19039955, 0.25386607,
+       #0.31733259, 0.38079911, 0.44426563, 0.50773215, 0.57119866,
+       #0.63466518, 0.6981317 , 0.76159822, 0.82506474, 0.88853126,
+       #0.95199777, 1.01546429, 1.07893081, 1.14239733, 1.20586385,
+       #1.26933037, 1.33279688, 1.3962634 , 1.45972992, 1.52319644,
+       #1.58666296, 1.65012947, 1.71359599, 1.77706251, 1.84052903,
+       #1.90399555, 1.96746207, 2.03092858, 2.0943951 , 2.15786162,
+       #2.22132814, 2.28479466, 2.34826118, 2.41172769, 2.47519421,
+       #2.53866073, 2.60212725, 2.66559377, 2.72906028, 2.7925268 ,
+       #2.85599332, 2.91945984, 2.98292636, 3.04639288, 3.10985939,
+       #3.17332591, 3.23679243, 3.30025895, 3.36372547, 3.42719199,
+       #3.4906585 , 3.55412502, 3.61759154, 3.68105806, 3.74452458,
+       #3.8079911 , 3.87145761, 3.93492413, 3.99839065, 4.06185717,
+       #4.12532369, 4.1887902 , 4.25225672, 4.31572324, 4.37918976,
+       #4.44265628, 4.5061228 , 4.56958931, 4.63305583, 4.69652235,
+       #4.75998887, 4.82345539, 4.88692191, 4.95038842, 5.01385494,
+       #5.07732146, 5.14078798, 5.2042545 , 5.26772102, 5.33118753,
+       #5.39465405, 5.45812057, 5.52158709, 5.58505361, 5.64852012,
+       #5.71198664, 5.77545316, 5.83891968, 5.9023862 , 5.96585272,
+       #6.02931923, 6.09278575, 6.15625227, 6.21971879, 6.28318531])
+# We can apply the sine function to each element in the array x and assign it to the array y
+# Calculate the sine of x list
+y = np.sin(x)
+# Plot the result
+plt.plot(x, y)
+
+#####################
+#Iterating 1-D Arrays
+arr1 = np.array([1, 2, 3])
+print(arr1)
+# [1 2 3]
+
+for x in arr1:
+  print(x)
+# 1
+# 2
+# 3
