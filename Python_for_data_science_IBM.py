@@ -1933,3 +1933,109 @@ for x in arr1:
 # 1
 # 2
 # 3
+
+##########
+# Exercise
+# Implement the following vector subtraction in numpy: u-v
+u = np.array([1, 0])
+v = np.array([0, 1])
+u - v # array([ 1, -1])
+
+# Multiply the numpy array z with -2
+z = np.array([2, 4])
+z * -2 # array([-4, -8])
+
+# Consider the list [1, 2, 3, 4, 5] and [1, 0, 1, 0, 1] 
+# Cast both lists to a numpy array then multiply them together
+ee = np.array([1, 2, 3, 4, 5])
+ff = np.array([1, 0, 1, 0, 1])
+ee * ff 
+
+###########
+import time 
+import sys
+import numpy as np 
+
+import matplotlib.pyplot as plt
+%matplotlib inline  
+
+def Plotvec2(a,b):
+    ax = plt.axes()# to generate the full window axes
+    ax.arrow(0, 0, *a, head_width=0.05, color ='r', head_length=0.1)#Add an arrow to the  a Axes with arrow head width 0.05, color red and arrow head length 0.1
+    plt.text(*(a + 0.1), 'a')
+    ax.arrow(0, 0, *b, head_width=0.05, color ='b', head_length=0.1)#Add an arrow to the  b Axes with arrow head width 0.05, color blue and arrow head length 0.1
+    plt.text(*(b + 0.1), 'b')
+    plt.ylim(-2, 2)#set the ylim to bottom(-2), top(2)
+    plt.xlim(-2, 2)#set the xlim to left(-2), right(2)
+
+# Convert the list [-1, 1] and [1, 1] to numpy arrays a and b. 
+# Then, plot the arrays as vectors using the fuction Plotvec2 and find their dot product
+a = np.array([-1, 1])
+b = np.array([1, 1])
+Plotvec2(a, b)
+print("The dot product is", np.dot(a,b))
+
+# Convert the list [1, 0] and [0, 1] to numpy arrays a and b
+# Then, plot the arrays as vectors using the function Plotvec2 and find their dot product
+a = np.array([1, 0])
+b = np.array([0, 1])
+Plotvec2(a, b)
+print("The dot product is", np.dot(a, b))
+
+# Convert the list [1, 1] and [0, 1] to numpy arrays a and b 
+# Then plot the arrays as vectors using the fuction Plotvec2 and find their dot product
+ggg = np.array([1, 1])
+ttt = np.array([0, 1])
+Plotvec2(ggg, ttt)
+print("The dot product is", np.dot(ggg,ttt))
+
+# Convert the list [1, 2, 3] and [8, 9, 10] to numpy arrays arr1 and arr2
+# Then perform Addition , Subtraction , Multiplication , Division and Dot Operation on the arr1 and arr2
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([8, 9, 10])
+
+arr3 = np.add(arr1, arr2)
+arr3
+
+arr4 = np.subtract(arr1, arr2)
+arr4
+
+arr5 = np.multiply(arr1, arr2)
+arr5
+
+arr6 = np.divide(arr1, arr2)
+arr6
+
+arr7 = np.dot(arr1, arr2)
+arr7
+
+
+arr1 = np.array([1, 2, 3, 4, 5])
+arr2 = np.array([6, 7, 8, 9, 10])
+
+
+# Convert the list [1, 2, 3, 4, 5] and [6, 7, 8, 9, 10] to numpy arrays arr1 and arr2 
+# Then find the even and odd numbers from arr1 and arr2
+# Starting index in slice is 1 as first even element(2) in array1 is at index 1
+even_arr1 = arr1[1:5:2]
+print("even for array1",even_arr1)
+    
+# Starting index in slice is 0 as first odd element(1) in array1 is at index 0
+odd_arr1=arr1[0:5:2]
+print("odd for array1",odd_arr1)
+
+# Starting index in slice is 0 as first even element(6) in array2 is at index 0
+even_arr2 = arr2[0:5:2]
+print("even for array2",even_arr2)
+    
+# Starting index in slice is 1 as first odd element(7) in array2 is at index 1
+odd_arr2=arr2[1:5:2]
+print("odd for array2",odd_arr2)
+
+# even for array1 [2 4]
+# odd for array1 [1 3 5]
+# even for array2 [ 6  8 10]
+# odd for array2 [7 9]
+
+####################
+# 2D Numpy in Python
