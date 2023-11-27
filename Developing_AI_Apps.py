@@ -276,8 +276,39 @@ unittest.main()
 
 ##########################################################################################################
 # Packaging 
-# 
+# Module, Package and Library 
+# - they are frequently used terms in python 
 
+# Module
+# - python module is a .py file containing Python definitions, statements, functions and classes 
+# - module can be imported to other scripts and notebooks 
+# Example: 
+# module.py
+def square(number):
+    return number ** 2
+
+def doubler(number):
+    return number * 2
+
+# importing 
+from module import square, doubler
+print("4^2=",square(4))
+print("2*4="doubler(4))
+# Output
+# 4^2 = 16
+# 2*4 = 8
+
+# Package 
+# - package is collection of python modules into a dictionary (directory) with __innit__.py file (that distingueshes it)
+# - when we import module or package, corresponding object is always of type module
+# - difference between module and package is only at file system level
+
+# Library
+# - collection of packages or single package
+# - numpy, PyTorch, Pandas
+# - terms package and library are used interchangeably 
+
+# ------------------
 # Packaging exercise 
 # 1. Create package 
 # Create new folder 
@@ -352,3 +383,72 @@ def median(numbers):
 # 4.0                                                                       #
 # >>> exit()                                                                #
 # ------------------------------------------------------------------------- #
+
+# exercise 2 (packages)
+# Create new module named geometry and add to mymath package
+# Create a module name geometry
+# Add function named area_of_rectangle that takes length and breadth as input and returns area of rectangle
+# Add function named area_of_circle that takes radius as input and returns area of circle
+# Modify __init__.py to include this module
+# Import and test function area_of_circle from python terminal
+# in terminal and mymath directory: 
+# touch geometry (make sure you are inside mymath directory)
+# inside geomeetry
+def area_of_rectangle(length, breadth):
+    """
+    calculates are of a rectangle 
+    """
+    return length * breadth
+
+def area_of_circle(radius):
+    """
+    function calculates are of a circle 
+    """
+    return 3.14 * (radius ** radius)
+# geometry is added, next step is terminal 
+# ---------------------------------------------------------------------------- #  
+# /home/project$ python3                                                       # 
+# Python 3.6.9 (default, Nov 25 2022, 14:10:45)                                # 
+# [GCC 8.4.0] on linux                                                         # 
+# Type "help", "copyright", "credits" or "license" for more information.       #
+# >>> import mymath                                                            # 
+# >>> mymath.geometry.area_of_rectangle(16, 8)                                 # 
+# 128                                                                          # 
+# >>> mymath.geometry.area_of_rectangle(5, 4)                                  # 
+# 20                                                                           #
+# >>> mymath.geometry.area_of_circle(5)                                        #
+# 9812.5                                                                       #
+# >>> mymath.geometry.area_of_circle(2)                                        #
+# 12.56                                                                        #
+# >>> exit()                                                                   #
+# ---------------------------------------------------------------------------- #
+
+##########################################################################################################
+# Python Libraries and Frameworks for application development 
+# - libraries are like toolkits for programming 
+# - NumPy = mathematical calculations, Pandas = data manipulation and analysis, Matplotlib = data visualization 
+
+# Python libraries for application development 
+# Requests library = HTTP requests simplification 
+# BeautifulSoup library = easy to scrape web information from web pages for iterating searching and modyfing
+# SQLAlchemy = SQL toolkit and ORM (Object orientatino mapping) tool, gives APP developer full availbility of SQL 
+# PyTest = testing framework allows users to create small simple tests
+
+# Framework 
+# - predefined structures for application development 
+# - frameworks eases development process
+# - simplifies debugging process
+# - enables more functinoality with less code
+# - improves database managment policy (pre build database tools)
+# - provides a set of guidelines for application development
+# - examples of frameworks: Django, Flask, Web2Py
+
+# Frameworks & Packages
+# - framework contains basic flow and architecture of application, which enables you to build complete application
+# - Python library is set of packages that perform only specific functionality
+
+##########################################################################################################
+# Flask 
+# - 
+# - 
+# - 
