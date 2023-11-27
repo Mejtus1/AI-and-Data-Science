@@ -147,3 +147,41 @@ print("The sum of {} and {} is {}".format(NUM1, NUM2, TOTAL))
 # ------------------------------------------------------------------
 # Your code has been rated at 8.33/10 (previous run: 6.67/10, +1.67)
 
+##########################################################################################################
+# Unit testing 
+# - method to validate if units of code are operating as designed
+# - unit is smaller, testable part of application
+# - to unit test we will use unittest.py library (installed Python module providing framework containing test functionality)
+
+# - unit testing through publishing to the production code base
+# - 1. first phase (test unit on your local system)
+# - 2. If test fails, you will determine reason for failure and fix issue
+# - 3. test again unit
+# - 4. After unit test passes, you will need to test unit in server environment, 
+# such as continuous integration continuous delivery (or CI/CD) test server
+
+# unit file 
+# mymodule.py file 
+def square(number):
+    return number ** 2
+
+def doubler(number:)
+    return number * 2 
+
+unit test file 
+# test_mymodule.py
+import unittest # import unittest library
+
+from mymodule import square, doubler #import from mymodule.py functions square and doubler
+class TestMyModule(unittest.TestCase): # build unittesting class to call test from single calss object 
+    def test_square(self):
+        self.assertEqual(square(2), 4) # assertion methods
+
+    def test_doubler(self):
+        self.assertEqual(double(0), 0) # assertion methods 
+       
+if __name__ == '__main__':
+      unittest.main()
+
+
+
