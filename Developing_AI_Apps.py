@@ -184,4 +184,54 @@ if __name__ == '__main__':
       unittest.main()
 
 
+# unit test exercise 
+# mymodule.py
+def square(number):
+    """
+    This function returns the square of a given number
+    """
+    return number ** 2
+
+def double(number):
+    """
+    This function returns twice the value of a given number
+    """
+    return number * 2
+
+# Write the unit tests for square function
+# When 2 is given as input the output must be 4.
+# When 3.0 is given as input the output must be 9.0.
+# When -3 is given as input the output must not be -9.
+
+# Write the unit tests for double function
+# When 2 is given as input the output must be 4.
+# When -3.1 is given as input the output must be -6.2.
+# When 0 is given as input the output must be 0.
+
+# test_mymodule.py
+# import unittest
+
+from mymodule import square, double
+
+class TestSquare(unittest.TestCase): 
+    def test1(self): 
+        self.assertEqual(square(2), 4) # test when 2 is given as input the output is 4.
+        self.assertEqual(square(3.0), 9.0)  # test when 3.0 is given as input the output is 9.0.
+        self.assertNotEqual(square(-3), -9)  # test when -3 is given as input the output is not -9.
+        
+
+class TestDouble(unittest.TestCase): 
+    def test1(self): 
+        self.assertEqual(double(2), 4) # test when 2 is given as input the output is 4.
+        self.assertEqual(double(-3.1), -6.2) # test when -3.1 is given as input the output is -6.2.
+        self.assertEqual(double(0), 0) # test when 0 is given as input the output is 0.
+        
+unittest.main()
+
+# python3 test_mymodule.py 
+# ..
+# ----------------------------------------------------------------------
+# an 2 tests in 0.000s
+# 
+# OK
 
