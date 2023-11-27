@@ -235,3 +235,120 @@ unittest.main()
 # 
 # OK
 
+
+# exercise 2
+# Write test cases for these scenarios
+# When 2 and 4 are given as input the output must be 6.
+# When 0 and 0 are given as input the output must be 0.
+# When 2.3 and 3.6 are given as input the output must be 5.9.
+# When the strings ‘hello’ and ‘world’ are given as input the output must be ‘helloworld’.
+# When 2.3000 and 4.300 are given as input the output must be 6.6.
+# When -2 and -2 are given as input the output must not be 0. (Hint : Use assertNotEqual)
+
+# mymodule2.py
+def add(a,b):
+    """
+    This function returns the sum of the given numbers
+    """
+    return a + b
+
+# test_mymodule2.py
+import unittest
+
+from mymodule import add
+
+class TestAdd(unittest.TestCase):
+    def test1(self):
+        self.assertEqual(add(2,4), 6)
+        self.assertEqual(add(0,0), 0)
+        self.assertEqual(add(2,4), 6)
+        self.assertEqual(add('hello','world'), 'helloworld')
+        self.assertEqual(add(2.3000,4.300), 6.6)
+        self.assertNotEqual(add(-2,-2), 0)
+
+unittest.main()
+# python3 test_mymodule.py 
+# .
+# ----------------------------------------------------------------------
+# Ran 1 test in 0.000s
+# 
+# OK
+
+##########################################################################################################
+# Packaging 
+# 
+
+# Packaging exercise 
+# 1. Create package 
+# Create new folder 
+# in VSC -> File -> New folder -> mymath
+# Create module basic.py
+# in VSC -> File -> New File -> basic.py (make sure you are in mymath directory) otherwise mv basic.py mymath/
+# inside basic.py write:
+def square(number):
+    """
+    This function returns the square of a given number
+    """
+    return number ** 2
+
+def double(number):
+    """
+    This function returns twice the value of a given number
+    """
+    return number * 2
+
+def add(a, b):
+    """
+    This function returns the sum of given numbers
+    """
+    return a + b
+# Create new module stats.py
+# File -> New File -> stats.py (make sure you are in mymath directory)
+# inside stats.py write
+def mean(numbers):
+    """
+    This function returns the mean of the given list of numbers
+    """
+    return sum(numbers)/len(numbers)
+
+def median(numbers):
+    """
+    This function returns median of the given list of numbers
+    """
+    numbers.sort()
+   
+    if len(numbers) % 2 == 0:
+       median1 = numbers[len(numbers) // 2]
+       median2 = numbers[len(numbers) // 2 - 1]
+       mymedian = (median1 + median2) / 2
+    else:
+       mymedian = numbers[len(numbers) // 2]
+    return mymedian
+# create new file __init__.py
+# File -> New File -> __init__.py (make sure you are in mymath directory)
+# directory mymath should look like this mymath
+#    mymath
+#    mymath/__init__.py
+#    mymath/basic.py
+#    mymath/statistics.py
+
+# Verify package 
+# Terminal -> python3 (invoke python3 and load pyhton interpreter)
+# at python prompt type: import mymath (if runs without errors it was successfully loaded)
+#  At python prompt type mymath.basic.add(3,4)
+# You should see an output 7 on screen
+# At python prompt type mymath.stats.mean([3,4,5])
+# You should see an output 4.0 on screen
+# Type exit() to quit python interpreter
+# ------------------------------------------------------------------------- #
+# python3                                                                   #
+# Python 3.6.9 (default, Nov 25 2022, 14:10:45)                             #
+# [GCC 8.4.0] on linux                                                      # 
+# Type "help", "copyright", "credits" or "license" for more information.    #
+# >>> import mymath                                                         # 
+# >>> mymath.basic.add(3,4)                                                 # 
+# 7                                                                         # 
+# >>> mymath.stats.mean([3,4,5])                                            # 
+# 4.0                                                                       #
+# >>> exit()                                                                #
+# ------------------------------------------------------------------------- #
