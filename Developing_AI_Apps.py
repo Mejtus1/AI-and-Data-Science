@@ -449,6 +449,36 @@ def area_of_circle(radius):
 
 ##########################################################################################################
 # Flask 
-# - 
-# - 
-# - 
+# - micro web framework 
+# - Flask runs on python (2.2.2 + python 3.7)
+# - created in 2004
+# - minimal set of dependencies
+# - community maintained extensions 
+
+# Main features
+# - build in web server
+# - has debugger
+# - uses standard python logging
+# - has build in unit testing 
+# - developers can access request and response objects 
+# Additional features
+# - provides static asset support 
+# - provides dynamic templates
+# - supports routing (Dynamic URLs, HTTP methods, redirecting)
+# - enables error handling 
+
+# Popular extensions 
+# - Flask SQLAlchemy (adds support for ORM, sql alchemy to work with SQL objects in python)
+# - Flask Mail (provides ability to set up SMTP mail server)
+# - Flask Admin (lets you add admin interfaces to flask applications easily)
+# - Flask Uploads (allows you to add customized files to your application)
+
+# Django & Flask 
+# Flask 
+# - Minimal lightweight framework
+# - Includes basic dependencies and is extensible
+# - Flexible and lets developer take most decisions 
+# Django 
+# - Full-stack framework
+# - Includes everything to create full-stack application 
+# - Opinionated and makes most decisions 
