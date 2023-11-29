@@ -482,3 +482,104 @@ def area_of_circle(radius):
 # - Full-stack framework
 # - Includes everything to create full-stack application 
 # - Opinionated and makes most decisions 
+
+##############
+# Flask Basic applications 
+# app.py file 
+from flask import Flask
+app = Flask(__name__) # instenciate Flash object as an app 
+
+# adding routes 
+# we want to return a message to our client from the server without running tha app 
+# use @app decorator to define method 
+# the @app takes an path as an argument 
+from flask import Flask
+app = Flask(__name__)
+@app.route('/') # (takes any argument of / and returns html message in bold <b></b>)
+def hello world():
+    return "<b> My first Flask application in action! </b>"
+
+# Run Flask with arguments
+# --app: identifies python file to run (flask automatically looks for file to run in current directory)
+# --
+
+
+##############
+# Flask basics 
+# objectives: 
+# 1. create and run Flask server in development mode
+# 2. Return JSON from an endpoint
+# 3. Understand request object
+
+# Terminal 
+# mkdir lab
+# - check python version installed 
+# python3 --version
+# Python 3.6.9
+# pip install "Flask--2.2.2"
+# install Flask version 2.2.2 (installing flask version 2.2.2)
+# 
+# Create the Hello World server
+# 1. Create server.py file
+#     touch /home/project/lab/server.py
+# 2. Import Flask module
+# from flask import Flask (importing into this file Flask module)
+# 3. Create flask app 
+# app = Flask(__name__)
+# 4. Create the main route
+# @app.route("/") (means root file)
+# 5. define method for main root URL
+# def index():
+# 6. Return the “Hello World” message to the client
+# return "Hello World"
+# server.py file 
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello World"
+
+# to run the server from terminal: 
+# flask --app server --debug run (command to run server from terminal)
+# (You should now be able to use CURL command on localhost:5000/)
+# terminal is already running server, 
+# you can use Split Terminal button to split terminal and run following command in second tab
+#
+# in a new terminal window use: 
+# "curl -X GET -i -w '\n' localhost:5000" 
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.2 Python/3.8.0
+Date: Wed, 29 Nov 2023 21:48:44 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 11
+Connection: close
+
+Hello World
+# response from the server 
+
+# Step 2: Return JSON
+# You can return number of different content types from @app.route() methods
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return {"message:": "Hello World"}
+# we changed from html format to JSON format (app.route method supports this)
+# run the server:
+# flask --app server --debug run
+# use get method: 
+# curl -X GET -i -w '\n' localhost:5000
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.2 Python/3.8.0
+Date: Wed, 29 Nov 2023 21:52:11 GMT
+Content-Type: application/json
+Content-Length: 32
+Connection: close
+
+{
+  "message:": "Hello World"
+}
+
+
