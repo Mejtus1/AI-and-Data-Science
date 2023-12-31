@@ -501,8 +501,51 @@ def hello world():
 
 # Run Flask with arguments
 # --app: identifies python file to run (flask automatically looks for file to run in current directory)
-# --
+# --debug: starts debug mode (development mode) (automatically restarts file on change)
+# - in this case the app is stored in file app.py
+# FLASK APPLICATION RUNNING IN DEVELOPMENT MODE
+# flask --app server --debug run
+#  * Serving Flask app 'server'
+#  * Debug mode: on
+# WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+#  * Running on http://127.0.0.1:5000
+# Press CTRL+C to quit
+#  * Restarting with stat
+#  * Debugger is active!
+#  * Debugger PIN: 132-428-810
 
+# Returning JSON 
+# 1. JSON method 1.
+# return python dictionary and Flask will use JSON module to return JSON to client
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return {"message": "Hello World"}
+#OUTPUT: 
+"curl -X GET -i -w '\n' localhost:5000" 
+HTTP/1.1 200 OK                           # response status 200 OK 
+Server: Werkzeug/2.2.2 Python/3.8.0
+Date: Wed, 29 Nov 2023 21:48:44 GMT
+Content-Type: application/json
+Content-Length: 31
+Connection: close
+
+{
+    "message": "Hello World"
+}
+
+# JSON Method 2. 
+# - jsonify() method 
+# - pass in key value pairs 
+# - returns JSON to client 
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return jsonify(message="Hello World")
 
 ##############
 # Flask basics 
@@ -548,14 +591,14 @@ def index():
 #
 # in a new terminal window use: 
 # "curl -X GET -i -w '\n' localhost:5000" 
-HTTP/1.1 200 OK
-Server: Werkzeug/2.2.2 Python/3.8.0
-Date: Wed, 29 Nov 2023 21:48:44 GMT
-Content-Type: text/html; charset=utf-8
-Content-Length: 11
-Connection: close
+# HTTP/1.1 200 OK
+# Server: Werkzeug/2.2.2 Python/3.8.0
+# Date: Wed, 29 Nov 2023 21:48:44 GMT
+# Content-Type: text/html; charset=utf-8
+# Content-Length: 11
+# Connection: close
 
-Hello World
+# Hello World
 # response from the server 
 
 # Step 2: Return JSON
@@ -582,4 +625,37 @@ Connection: close
   "message:": "Hello World"
 }
 
+########################
+# Request and Response Objects - GET, POST methods
+# Flask request object
+# Flask response object 
+# Request Object, all HTTP calls to Flask contain request object created from Flask.Request class
 
+# Custom routes 
+# app.route("/path") decorator defaults to GET HTTP method
+# - use methods argument to only allow specific HTTP methods
+
+app.route("/health")
+def health():
+     return jsonify(dict(status="OK")), 200 # GET method is implicit here
+
+app.route("/health", methods=["GET"])
+def heatlh():
+     return jsonify(dict(status="OK")), 200 # GET method is explicitly specified
+
+# health route with multiple HTTP method choices
+app.route("/health", methods=["GET"])
+def heatlh():
+    if request.method == "GET": return jsonify(status="OK", method="GET"), 200
+
+    if request.method == "POST": return jsonify(status="OK", method="POST"), 200
+# output: 
+   # $ curl -X GET http://localhost:5000/health {"method": "GET","status": "OK"}
+   # $ curl -X POST http://localhost:5000/health {"method": "POST","status": "OK"}
+
+# - all HTTP calls to Flask contain request object created from Flask contain object from Flask.Request class
+# - when client requests resource from Flask server, it is handled by @app.route decorator
+
+
+
+ 
