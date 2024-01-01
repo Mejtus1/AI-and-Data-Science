@@ -656,6 +656,561 @@ def heatlh():
 # - all HTTP calls to Flask contain request object created from Flask contain object from Flask.Request class
 # - when client requests resource from Flask server, it is handled by @app.route decorator
 
+##########################
+# Practice with Flask 
 
+# cd /home/project 
+# mkdir lab 
+# cd lab 
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "hello world"
+# above code creates a Flask server and adds a home endpoint “/“ that returns the string hello world
+# terminal run: 
+#flask --app server --debug run
+# flask --app server --debug run
+# * Serving Flask app 'server'
+# * Debug mode: on
+# WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+# * Running on http://127.0.0.1:5000
+# Press CTRL+C to quit
+# * Restarting with stat
+# * Debugger is active!
+# * Debugger PIN: 132-428-810
+
+# in order for server to run we need to 
+
+# Terminal window 1 
+# 127.0.0.1 - - [31/Dec/2023 05:21:30] "GET / HTTP/1.1" 200 -
+
+# Split terminal window 2
+# /home/project$ curl -X GET -i -w '\n' localhost:5000
+# HTTP/1.1 200 OK
+# Server: Werkzeug/2.2.3 Python/3.11.7
+# Date: Sun, 31 Dec 2023 10:21:30 GMT
+# Content-Type: text/html; charset=utf-8
+# Content-Length: 11
+# Connection: close
+
+# hello world
+# - Flask automatically sends HTTP 200 OK successful response when you sent back message
+
+#---------------------------------------------------
+# 1. Task "Send custom HTTP code back with a touple"
+# - reuse server.py file you worked on in last part
+# - create new method named no_content with @app.route decorator and URL of /no_content 
+# - method does not have any arguments
+# - return tuple with JSON message No content found
+@app.route('/no_content')
+def no_content():
+    """Return 'No content found' with a status of 204
+
+    Returns:
+        tuple: JSON message and status code 204
+    """
+    return jsonify({'message': 'No content found'}), 204
+# Terminal 1 output/input
+# flask --app serer --debug run
+#  * Serving Flask app 'server'
+#  * Debug mode: on
+# WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+#  * Running on http://127.0.0.1:5000
+# Press CTRL+C to quit
+#  * Restarting with stat
+#  * Debugger is active!
+#  * Debugger PIN: 132-428-810
+
+# 127.0.0.1 - - [31/Dec/2023 07:21:21] "GET /no_content HTTP/1.1" 204 - # interaction with server 
+
+# Terminal 2 output/input
+3 X GET -i -w '\n' localhost:5000/no_contentrl -X
+# HTTP/1.1 204 NO CONTENT                 # and HTTP code 204 
+# Server: Werkzeug/2.2.3 Python/3.11.7
+# Date: Sun, 31 Dec 2023 12:21:21 GMT
+# Content-Type: application/json          # we need to have here application/json
+# Connection: close
+
+#---------------------------------------------------------------------------------------
+# 2. task 
+# - create second method named index_explicit with @app.route decorator and URL of /exp
+# - method does not have any arguments
+# - use make_response() method to create new response, set status to 200
+@app.route('/exp') #make response module needs to be imported from Flask in order to run 
+def index_explicit():
+    resp = make_response({"message": "Hello World"})
+    resp.status_code = 200
+    return resp
+
+# Terminal 1 output/input
+# curl -X GET -i -w '\n' localhost:5000/exp
+# HTTP/1.1 200 OK
+# Server: Werkzeug/2.2.3 Python/3.11.7
+# Date: Sun, 31 Dec 2023 12:33:23 GMT
+# Content-Type: application/json
+# Content-Length: 11
+# Connection: close
+
+# {
+#   "message": "Hello World"
+# }
+
+# Terminal 2 output/input
+# flask --app ser --debug run
+#  * Serving Flask app 'server'
+#  * Debug mode: on
+# WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+#  * Running on http://127.0.0.1:5000
+# Press CTRL+C to quit
+#  * Restarting with stat
+#  * Debugger is active!
+#  * Debugger PIN: 132-428-810
+
+127.0.0.1 - - [31/Dec/2023 07:33:23] "GET /exp HTTP/1.1" 200 - # interaction with server 
+
+#---------------------------------------------------------------------------------------
+# 3. task
+# Process input arguments
+# - it is common for clients to pass arguments in the URL. 
+# - you will learn how to process arguments in this lab
+# - lab provides list of people with their id, first name, last name, and address information in object
+# - normally, this information is stored in a database, but you are using a hard coded list for your simple use case 
+# - this data was generated with Mockaroo
+# - client will send in requests in form of http://localhost:5000?q=first_name 
+# = you will create method that will accept first_name as input and return person with that first name
 
  
+# Copy following list to server.py file:
+from flask import Flask, make_response
+app = Flask(__name__)
+
+data = [
+    {
+        "id": "3b58aade-8415-49dd-88db-8d7bce14932a",
+        "first_name": "Tanya",
+        "last_name": "Slad",
+        "graduation_year": 1996,
+        "address": "043 Heath Hill",
+        "city": "Dayton",
+        "zip": "45426",
+        "country": "United States",
+        "avatar": "http://dummyimage.com/139x100.png/cc0000/ffffff",
+    },
+    {
+        "id": "d64efd92-ca8e-40da-b234-47e6403eb167",
+        "first_name": "Ferdy",
+        "last_name": "Garrow",
+        "graduation_year": 1970,
+        "address": "10 Wayridge Terrace",
+        "city": "North Little Rock",
+        "zip": "72199",
+        "country": "United States",
+        "avatar": "http://dummyimage.com/148x100.png/dddddd/000000",
+    },
+    {
+        "id": "66c09925-589a-43b6-9a5d-d1601cf53287",
+        "first_name": "Lilla",
+        "last_name": "Aupol",
+        "graduation_year": 1985,
+        "address": "637 Carey Pass",
+        "city": "Gainesville",
+        "zip": "32627",
+        "country": "United States",
+        "avatar": "http://dummyimage.com/174x100.png/ff4444/ffffff",
+    },
+    {
+        "id": "0dd63e57-0b5f-44bc-94ae-5c1b4947cb49",
+        "first_name": "Abdel",
+        "last_name": "Duke",
+        "graduation_year": 1995,
+        "address": "2 Lake View Point",
+        "city": "Shreveport",
+        "zip": "71105",
+        "country": "United States",
+        "avatar": "http://dummyimage.com/145x100.png/dddddd/000000",
+    },
+    {
+        "id": "a3d8adba-4c20-495f-b4c4-f7de8b9cfb15",
+        "first_name": "Corby",
+        "last_name": "Tettley",
+        "graduation_year": 1984,
+        "address": "90329 Amoth Drive",
+        "city": "Boulder",
+        "zip": "80305",
+        "country": "United States",
+        "avatar": "http://dummyimage.com/198x100.png/cc0000/ffffff",
+    }
+]
+
+# Let's confirm that data has been copied to file
+@app.route("/data")
+def get_data():
+    try:
+        if data and len(data) > 0:
+            return {"message": f"Data of length {len(data)} found"}
+        else:
+            return {"message": "Data is empty"}, 500
+    except NameError:
+        return {"message": "Data not found"}, 404
+    
+# - above code simply checks if variable data exits 
+# - if it does not, NameError is raised and HTTP 404 is returned
+# - if data exists and is empty, HTTP 500 is returned
+# - if data exists and is not empty, HTTP 200 success message is returned
+
+# Terminal 1 output/input
+
+# flask --app server --debug run
+#  * Serving Flask app 'server'
+#  * Debug mode: on
+# WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+#  * Running on http://127.0.0.1:5000
+# Press CTRL+C to quit
+#  * Restarting with stat
+#  * Debugger is active!
+#  * Debugger PIN: 396-313-000
+# 127.0.0.1 - - [01/Jan/2024 11:03:17] "GET /data HTTP/1.1" 200 -
+
+
+# Terminal 2 output/input 
+
+# curl -X GET -i -w '\n' localhost:5000/data
+# HTTP/1.1 200 OK
+# Server: Werkzeug/2.2.3 Python/3.11.7
+# Date: Mon, 01 Jan 2024 16:03:17 GMT
+# Content-Type: application/json
+# Content-Length: 42
+# Connection: close
+
+# {
+#   "message": "Data of length 5 found"
+# }
+
+# - create method called name_search with @app.route decorator
+# - this method should be called when a client requests for the /name_search URL
+# - method will not accept any parameter, however, will look for argument q in incoming request URL
+# - this argument holds first_name client is looking for
+# method returns:
+# - person information with status of HTTP 400 if first_name is found in data
+# - message of Invalid input parameter with status of HTTP 422 if argument q is missing from request
+# - message of Person not found with status code of HTTP 404 if person is not found in data
+from flask import request
+
+@app.route("/name_search")
+def name_search():
+    """find a person in the database
+
+    Returns:
+        json: person if found, with status of 200
+        404: if not found
+        422: if argument q is missing
+    """
+    query = request.args.get("q")
+
+    if not query:
+        return {"message": "Invalid input parameter"}, 422
+
+    for person in data:
+        if query.lower() in person["first_name"].lower():
+            return person
+
+    return ({"message": "Person not found"}, 404)
+
+# Terminal 1 output/input
+
+# flask --app server --debug run
+#  * Serving Flask app 'server'
+#  * Debug mode: on
+# WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+#  * Running on http://127.0.0.1:5000
+# Press CTRL+C to quit
+#  * Restarting with stat
+#  * Debugger is active!
+#  * Debugger PIN: 396-313-000
+# 127.0.0.1 - - [01/Jan/2024 11:17:32] "GET /name_search?q=Abdel HTTP/1.1" 200 -
+# 127.0.0.1 - - [01/Jan/2024 11:19:43] "GET /name_search HTTP/1.1" 422 -
+
+# Terminal 2 output/input
+
+# curl -X GET -i -w '\n' "localhost:5000/name_search?q=Abdel"
+# HTTP/1.1 200 OK
+# Server: Werkzeug/2.2.3 Python/3.11.7
+# Date: Mon, 01 Jan 2024 16:17:32 GMT
+# Content-Type: application/json
+# Content-Length: 295
+# Connection: close
+
+{
+  "address": "2 Lake View Point",
+  "avatar": "http://dummyimage.com/145x100.png/dddddd/000000",
+  "city": "Shreveport",
+  "country": "United States",
+  "first_name": "Abdel",
+  "graduation_year": 1995,
+  "id": "0dd63e57-0b5f-44bc-94ae-5c1b4947cb49",
+  "last_name": "Duke",
+  "zip": "71105"
+}
+
+# Next, test that the method returns HTTP 422 if the argument q is missing:
+
+# curl -X GET -i -w '\n' "localhost:5000/name_search"
+# HTTP/1.1 422 UNPROCESSABLE ENTITY
+# Server: Werkzeug/2.2.3 Python/3.11.7
+# Date: Mon, 01 Jan 2024 16:19:43 GMT
+# Content-Type: application/json
+# Content-Length: 43
+# Connection: close
+
+{
+  "message": "Invalid input parameter"
+}
+
+#---------------------------------------------------------------------------------------
+# 4. Task
+# Add dynamic URLs
+# - important part of back-end programming is creating APIs
+# - API is contract between provider and user 
+# - it is common to create RESTful APIs that can be called by front end or other clients 
+# - in REST based API, resource information is sent as part of request URL
+# For example, with your resource or persons, client can send following request:
+GET http://localhost/person/unique_identifier
+# - this request asks for person with unique identifier
+
+# 4.1 Create GET /count endpoint
+# - add @app.get() decorator for /count URL
+# - define count function that simply returns number of items in data list
+  @app.route("/count")
+def count():
+    try:
+        return {"data count": len(data)}, 200
+    except NameError:
+        return {"message": "data not defined"}, 500
+    
+# 
+    
+# Terminal 1 input/output
+flask --app server --debug run
+ * Serving Flask app 'server'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 396-313-000
+127.0.0.1 - - [01/Jan/2024 11:53:23] "GET /count HTTP/1.1" 200 -
+
+# Terminal 2 input/output
+curl -X GET -i -w '\n' "localhost:5000/count"
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 16:53:23 GMT
+Content-Type: application/json
+Content-Length: 22
+Connection: close
+
+{
+  "data count": 5
+}
+
+# 4.2 Create GET /person/id endpoint
+# - create new endpoint for http://localhost/person/unique_identifier 
+# - method should be named find_by_uuid, It should take argument of type UUID and return person JSON if found
+# - if  person is not found, method should return 404 with message of person not found
+# - finally, client should only be able to call this method by passing valid UUID type id
+
+# - if you pass in invalid UUID, server should return 404 message
+
+# - pass in valid UUID that does not exist in data list
+# - method should return 404 with message of person not found
+
+# terminal 1 output/input
+flask --app server --debug run
+ * Serving Flask app 'server'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 396-313-000
+127.0.0.1 - - [01/Jan/2024 11:53:23] "GET /count HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2024 11:57:56] "GET /person/66c09925-589a-43b6-9a5d-d1601cf53287 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2024 11:59:34] "GET /person/not-a-valid-uuid HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jan/2024 12:02:20] "GET /person/11111111-589a-43b6-9a5d-d1601cf51111 HTTP/1.1" 404 -
+
+# terminal 2 output/input
+curl -X GET -i localhost:5000/person/66c09925-589a-43b6-9a5d-d1601cf53287
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 16:57:56 GMT
+Content-Type: application/json
+Content-Length: 294
+Connection: close
+
+{
+  "address": "637 Carey Pass",
+  "avatar": "http://dummyimage.com/174x100.png/ff4444/ffffff",
+  "city": "Gainesville",
+  "country": "United States",
+  "first_name": "Lilla",
+  "graduation_year": 1985,
+  "id": "66c09925-589a-43b6-9a5d-d1601cf53287",
+  "last_name": "Aupol",
+  "zip": "32627"
+}
+
+# 
+curl -X GET -i localhost:5000/person/not-a-valid-uuid
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 16:59:34 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 207
+Connection: close
+
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+# 
+curl -X GET -i localhost:5000/person/11111111-589a-43b6-9a5d-d1601cf51111
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 17:02:20 GMT
+Content-Type: application/json
+Content-Length: 36
+Connection: close
+
+{
+  "message": "person not found"
+}
+
+# 4.3 Task 
+# Create DELETE /person/id endpoint
+# - implement DELETE endpoint to delete person resource
+# - create new endpoint for DELETE http://localhost/person/unique_identifier
+# - method should be named delete_by_uuid, it should take in argument of type UUID and delete person from data listwith that id 
+# - if person is not found, method should return 404 with message of person not found
+# - finally, client (curl) should call this method by passing valid UUID type id
+
+# Test the DELETE /person/uuid URL by calling the endpoint.
+# curl -X DELETE -i localhost:5000/person/66c09925-589a-43b6-9a5d-d1601cf53287
+
+You can now use the count endpoint you added earlier to test if the number of persons has reduced by one.
+curl -X GET -i localhost:5000/count
+
+If you pass an invalid UUID, the server should return a 404 message.
+curl -X DELETE -i localhost:5000/person/not-a-valid-uuid
+
+Finally, pass in a valid UUID that does not exist in the data list. The method should return a 404 with a message of person not found.
+curl -X DELETE -i localhost:5000/person/11111111-589a-43b6-9a5d-d1601cf51111
+
+# Terminal 1 output/input
+127.0.0.1 - - [01/Jan/2024 12:09:21] "DELETE /person/66c09925-589a-43b6-9a5d-d1601cf53287 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2024 12:09:41] "GET /count HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2024 12:09:52] "DELETE /person/not-a-valid-uuid HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jan/2024 12:10:01] "DELETE /person/11111111-589a-43b6-9a5d-d1601cf51111 HTTP/1.1" 404 -
+
+# Terminal 2 output/input 
+curl -X DELETE -i localhost:5000/person/66c09925-589a-43b6-9a5d-d1601cf53287
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 17:09:21 GMT
+Content-Type: application/json
+Content-Length: 56
+Connection: close
+
+{
+  "message": "66c09925-589a-43b6-9a5d-d1601cf53287"
+}
+
+curl -X GET -i localhost:5000/count
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 17:09:41 GMT
+Content-Type: application/json
+Content-Length: 22
+Connection: close
+
+{
+  "data count": 4
+}
+
+curl -X DELETE -i localhost:5000/person/not-a-valid-uuid
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 17:09:52 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 207
+Connection: close
+
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+theia@theia-matuschmel13:/home/project$ curl -X DELETE -i localhost:5000/person/11111111-589a-43b6-9a5d-d1601cf51111
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 17:10:01 GMT
+Content-Type: application/json
+Content-Length: 36
+Connection: close
+
+{
+  "message": "person not found"
+}
+
+#---------------------------------------------------------------------------------------
+# Task 5.
+# Add error handlers
+# - add application level global handlers to handle errors like 404(not found) and 500 (internal server error) 
+# - recall from video that Flask makes it easy to handle these global error handlers using the errorhandler() decorator
+# - if you make an invalid request to server now, Flask will return HTML page with 404 error 
+# Something like this:
+
+curl -X POST -i -w '\n' http://localhost:5000/notvalid
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/2.2.2 Python/3.7.16
+Date: Sun, 01 Jan 2023 23:21:54 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 207
+Connection: close
+
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually, please check your spelling and try again.</p>
+
+# - this is great, but you want to return JSON response for all invalid requests
+
+# - create method called api_not_found with @app.errorhandler decorator
+# - this method will return message of API not found with HTTP status code of 404 whenever client requests URL that does not lead to any endpoints defined by server
+
+@app.errorhandler(404)
+def api_not_found(error):
+    return {"message": "API not found"}, 404
+
+# Terminal output/input 1 
+127.0.0.1 - - [01/Jan/2024 12:38:03] "POST /notvalid HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jan/2024 12:39:13] "POST /notvalid HTTP/1.1" 404 -
+
+# Terminal output/input 2
+curl -X POST -i -w '\n' http://localhost:5000/notvalid
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/2.2.3 Python/3.11.7
+Date: Mon, 01 Jan 2024 17:39:13 GMT
+Content-Type: application/json
+Content-Length: 33
+Connection: close
+
+{
+  "message": "API not found"
+}
