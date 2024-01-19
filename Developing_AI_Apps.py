@@ -1214,3 +1214,57 @@ Connection: close
 {
   "message": "API not found"
 }
+
+#################################################################################################
+# Deploying Web Apps using Flask 
+# - Flask is a microframework for creating web applications 
+# - supports CRUD
+# Basic structure of Flask application 
+# CREATE = POST/PUT method ( - can be used to create user, POST = creates object on every request, PUT = creates object or data only on first request and updates data on aditional requests)
+# READ   = GET method ( - get data from server)
+# UPDATE = UPDATE method ( - update existing data or objects )
+# DELETE = DELETE method ( - delete existing data or objects )
+
+# How to create a web application using flask 
+# 1. pip install flask 
+# 2. import flask
+# 3. instantiate flask 
+# 4. run the app 
+
+# Hello World Application example
+# in terminal pip install flask 
+# touch FlaskAppExample
+# cd FlaskAppExample
+from flask import Flask
+app = Flask("My first Application") # app is reference name 
+
+@app.route('/') # define a root and method that will be invoked when this route is accessed
+                # no GET, POST is specified, IF neither is specified GET is requested by defaulet
+def hello() :   # method specified, will be invoked when system access the API endpoint and it will be runned 
+    return 'Hello World:' # this will be returned when API is accessed
+
+if __name__ == "__main__": # this web application will run only if __name__ equals __main__
+    app.run(debug-True)
+
+# Rendering templates example 
+# Sample FLASK APPLICATION 
+from flask import Flask, render_template, request # ( - request = to handle incoming request, render_template = to handle render requests)
+app = Flask("My first Application") # 
+
+@app.route('/sample') # /sample = render static HTML page, image is sourced from static directory
+def getSampleHtml() : # method 
+    return render_template ('sample.html') # method calls render_template 
+
+@app.route('/user/ < username >', methods=['GET']) # < username > = parameter 
+    def greetUser(username): 
+    reutrn render_template("result.html", username=username)
+
+@app.route('user', methods=['GET'])
+def greetUserBasedOnReq():
+    username = request.args.get("username")
+    return render_template("result.html", username=username)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
