@@ -1338,3 +1338,78 @@ def home():
 def getUserDetails(userid):
     return "User Details for  "+userid
 
+#################################################################################################
+# Building and Deploying Web App using Flask App 
+# 
+
+##########################################
+# Task 1: Write the mathematical functions
+# - in this task, you are required to write script that has functions to add, subtract and multiply two values
+
+# cd /home/project/ 
+# git clone https://github.com/ibm-developer-skills-network/hjbsk-build_deploy_app_flask
+# cd /home/project/hjbsk-build_deploy_app_flask
+# mkdir Maths, cd Maths
+# touch mathematics.py
+def summation(a, b):
+    result = a + b 
+    return result
+
+def subtraction(a, b):
+    result = a - b 
+    return result
+
+def multiplication(a, b):
+    result = a * b 
+    return result 
+
+###########################
+# Task 2: Package functions
+
+# 1. Create __init__.py file in directory Maths
+# touch __init__.py 
+# - this file indicates that directory containing it should be trated as package, when module is imported this file is executed
+ 
+# 2. Import file mathematics.py to __init__.py file
+# cd __init__.py
+from . import mathematics
+
+# 3. Import package Maths in server.py
+# 4. In server.py, for end-point /, implement method that renders index.html
+# 5. In space provided in server.py for end-point /sum implement method that uses appropriate summation function
+# 6. In space provided in server.py for end-point /sub implement method that uses appropriate subtraction function
+# 7. In space provided in server.py for end-point /mul implement method that uses appropriate multiplication function
+
+from flask import Flask, render_template, request
+fron Maths.mathematics import summation, subtraction, multiplication # 3. imported packages from Math to server.py file 
+
+app = Flask("Mathematics Problem Solver")
+
+@app.route("/sum")
+def sum_route():
+    num1 = float(request.args.get('num1'))
+    num2 = float(request.args.get('num2'))
+    result = summation(num1, num2) # 5. 
+    return str(result)
+
+@app.route("/sub")
+def sub_route():
+    num1 = float(request.args.get('num1'))
+    num2 = float(request.args.get('num2'))
+    result = subtraction(num1, num2) # 6. 
+    return str(result)
+
+@app.route("/mul")
+def mul_route():
+    num1 = float(request.args.get('num1'))
+    num2 = float(request.args.get('num2'))
+    result = multiplication(num1, num2) # 7.
+    return str(result)
+
+@app.route("/") # 4. root rendering index.html 
+def render_index_page():
+    return render_template('index.html')
+    
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
+
