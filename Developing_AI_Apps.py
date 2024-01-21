@@ -1267,4 +1267,74 @@ def greetUserBasedOnReq():
 if __name__ == "__main__":
     app.run(debug=True)
 
+#################################################################################################
+# Decorators in Flask
+# - decorators help in annotating methods and tell what particular method is meant for
+
+# Method decorators
+# - python code all output to be in JSON format
+
+def jsonify_decorator(function):
+    def modifyOutput():
+        return {"output":function()}
+    return modifyOutput
+
+@jsonify_decorator
+def hello():
+    return 'hello world'
+
+@jsonify_decorator
+def add():
+    num1 = input("Enter a number - ")
+    num2 = input("Enter another number - ")
+    return int(num1)+int(num2)
+print(hello())
+print(add())
+
+# output of above python code will be:
+# {'output': 'hello world'}
+# Enter a number - 73
+# Enter another number - 87 
+# {'output': 160}
+
+# - as can be seen method call has been wrapped with decorator
+# - coder has free will to choose name of decorator, here it is jsonify_decorator
+
+# - method decorator is also referred to as wrapper, which wraps output of function, that it decorates
+# - in above code sample, jsonify-decorator is decorator method
+# - we have added this decorator to hello() and add()
+# - output of these method calls will now be wrapped and decorated with jsonify_decorator
+
+##################
+# Route decorators 
+# - when you visit any domain you have root and then have other end-points you can access
+# - examples below
+
+# https://mydomain.com/
+# https://mydomain.com/about
+# https://mydomain.com/register
+
+# to define these endpoints in Python we use what we call Route Decorators
+@app.route("/")
+def home():
+    return "Hello World!"
+# @app.route(“/“) is Python decorator that Flask provides to assign URLs in our app to functions easily 
+# You can easily tell that decorator is telling our @app that whenever user visits our application’s domain, in our case, execute home() function
+
+# - we can handle multiple routes with single function by just stacking additional route decorators above method which should be invoked when route is called
+# - following is valid example of serving same “Hello World!” message for 3 separate routes:
+@app.route("/")
+@app.route("/home")
+@app.route("/index")
+def home():
+    return "Hello World!"
+# - route decorators also take method as second parameter, which can be set to type of HTTP methods, route will support
+
+# - route decorator can also be more specific
+# - to get details of user whose userId is U0001, you may go to http://mydomain.com/userdetails/U0001
+# - it doesn’t make sense to define different route for each user you may be dealing with
+# - in such cases, we define route like this
+@app.route("/userdetails/<userid>")
+def getUserDetails(userid):
+    return "User Details for  "+userid
 
